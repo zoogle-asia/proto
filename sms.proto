@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+enum  SmsOperate {
+  Login=0;
+  Register=1;
+  ResetPassword=2;
+}
+
+
+message SendSmsRequest {
+  string phone=1;
+  SmsOperate operate=2;
+}
+message SendSmsResponse{
+  bool success=1;
+}
+
+service SmsService {
+  rpc SendSms(SendSmsRequest) returns (SendSmsResponse);
+}
