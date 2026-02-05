@@ -20,7 +20,7 @@ import 'sms.pb.dart' as $0;
 
 export 'sms.pb.dart';
 
-@$pb.GrpcServiceName('SmsService')
+@$pb.GrpcServiceName('zoogle.SmsService')
 class SmsServiceClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -43,14 +43,14 @@ class SmsServiceClient extends $grpc.Client {
 
   static final _$sendSms =
       $grpc.ClientMethod<$0.SendSmsRequest, $0.SendSmsResponse>(
-          '/SmsService/SendSms',
+          '/zoogle.SmsService/SendSms',
           ($0.SendSmsRequest value) => value.writeToBuffer(),
           $0.SendSmsResponse.fromBuffer);
 }
 
-@$pb.GrpcServiceName('SmsService')
+@$pb.GrpcServiceName('zoogle.SmsService')
 abstract class SmsServiceBase extends $grpc.Service {
-  $core.String get $name => 'SmsService';
+  $core.String get $name => 'zoogle.SmsService';
 
   SmsServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.SendSmsRequest, $0.SendSmsResponse>(

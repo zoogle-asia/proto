@@ -266,7 +266,7 @@ type LoginRequest struct {
 	// sms code
 	SmsCode *string `protobuf:"bytes,4,opt,name=sms_code,json=smsCode,proto3,oneof" json:"sms_code,omitempty"`
 	// 登陆方式
-	Method        LoginMethod `protobuf:"varint,5,opt,name=method,proto3,enum=LoginMethod" json:"method,omitempty"`
+	Method        LoginMethod `protobuf:"varint,5,opt,name=method,proto3,enum=zoogle.LoginMethod" json:"method,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -392,9 +392,10 @@ type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Phone         string                 `protobuf:"bytes,2,opt,name=phone,proto3" json:"phone,omitempty"`
-	SmsCode       *string                `protobuf:"bytes,3,opt,name=smsCode,proto3,oneof" json:"smsCode,omitempty"`
-	Password      *string                `protobuf:"bytes,4,opt,name=password,proto3,oneof" json:"password,omitempty"`
-	Method        LoginMethod            `protobuf:"varint,5,opt,name=method,proto3,enum=LoginMethod" json:"method,omitempty"`
+	Avatar        *string                `protobuf:"bytes,3,opt,name=avatar,proto3,oneof" json:"avatar,omitempty"`
+	SmsCode       *string                `protobuf:"bytes,4,opt,name=smsCode,proto3,oneof" json:"smsCode,omitempty"`
+	Password      *string                `protobuf:"bytes,5,opt,name=password,proto3,oneof" json:"password,omitempty"`
+	Method        LoginMethod            `protobuf:"varint,6,opt,name=method,proto3,enum=zoogle.LoginMethod" json:"method,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -443,6 +444,13 @@ func (x *RegisterRequest) GetPhone() string {
 	return ""
 }
 
+func (x *RegisterRequest) GetAvatar() string {
+	if x != nil && x.Avatar != nil {
+		return *x.Avatar
+	}
+	return ""
+}
+
 func (x *RegisterRequest) GetSmsCode() string {
 	if x != nil && x.SmsCode != nil {
 		return *x.SmsCode
@@ -469,7 +477,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\"X\n" +
+	"user.proto\x12\x06zoogle\x1a\vempty.proto\"X\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -486,37 +494,40 @@ const file_user_proto_rawDesc = "" +
 	"\x05_nameB\t\n" +
 	"\a_avatarB\b\n" +
 	"\x06_phoneB\v\n" +
-	"\t_password\"\xc3\x01\n" +
+	"\t_password\"\xca\x01\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05phone\x18\x01 \x01(\tR\x05phone\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12 \n" +
 	"\tdevice_id\x18\x03 \x01(\x05H\x00R\bdeviceId\x88\x01\x01\x12\x1e\n" +
-	"\bsms_code\x18\x04 \x01(\tH\x01R\asmsCode\x88\x01\x01\x12$\n" +
-	"\x06method\x18\x05 \x01(\x0e2\f.LoginMethodR\x06methodB\f\n" +
+	"\bsms_code\x18\x04 \x01(\tH\x01R\asmsCode\x88\x01\x01\x12+\n" +
+	"\x06method\x18\x05 \x01(\x0e2\x13.zoogle.LoginMethodR\x06methodB\f\n" +
 	"\n" +
 	"_device_idB\v\n" +
-	"\t_sms_code\"@\n" +
-	"\rLoginResponse\x12\x19\n" +
-	"\x04user\x18\x01 \x01(\v2\x05.UserR\x04user\x12\x14\n" +
-	"\x05token\x18\x02 \x01(\tR\x05token\"\xba\x01\n" +
+	"\t_sms_code\"G\n" +
+	"\rLoginResponse\x12 \n" +
+	"\x04user\x18\x01 \x01(\v2\f.zoogle.UserR\x04user\x12\x14\n" +
+	"\x05token\x18\x02 \x01(\tR\x05token\"\xe9\x01\n" +
 	"\x0fRegisterRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
-	"\x05phone\x18\x02 \x01(\tR\x05phone\x12\x1d\n" +
-	"\asmsCode\x18\x03 \x01(\tH\x00R\asmsCode\x88\x01\x01\x12\x1f\n" +
-	"\bpassword\x18\x04 \x01(\tH\x01R\bpassword\x88\x01\x01\x12$\n" +
-	"\x06method\x18\x05 \x01(\x0e2\f.LoginMethodR\x06methodB\n" +
+	"\x05phone\x18\x02 \x01(\tR\x05phone\x12\x1b\n" +
+	"\x06avatar\x18\x03 \x01(\tH\x00R\x06avatar\x88\x01\x01\x12\x1d\n" +
+	"\asmsCode\x18\x04 \x01(\tH\x01R\asmsCode\x88\x01\x01\x12\x1f\n" +
+	"\bpassword\x18\x05 \x01(\tH\x02R\bpassword\x88\x01\x01\x12+\n" +
+	"\x06method\x18\x06 \x01(\x0e2\x13.zoogle.LoginMethodR\x06methodB\t\n" +
+	"\a_avatarB\n" +
 	"\n" +
 	"\b_smsCodeB\v\n" +
 	"\t_password*)\n" +
 	"\vLoginMethod\x12\f\n" +
 	"\bPASSWORD\x10\x00\x12\f\n" +
-	"\bSMS_CODE\x10\x012\xa6\x01\n" +
-	"\vUserService\x12&\n" +
-	"\x05Login\x12\r.LoginRequest\x1a\x0e.LoginResponse\x12#\n" +
-	"\bRegister\x12\x10.RegisterRequest\x1a\x05.User\x12!\n" +
-	"\aGetUser\x12\x0f.GetUserRequest\x1a\x05.User\x12'\n" +
+	"\bSMS_CODE\x10\x012\x88\x02\n" +
+	"\vUserService\x124\n" +
+	"\x05Login\x12\x14.zoogle.LoginRequest\x1a\x15.zoogle.LoginResponse\x121\n" +
+	"\bRegister\x12\x17.zoogle.RegisterRequest\x1a\f.zoogle.User\x12/\n" +
+	"\aGetUser\x12\x16.zoogle.GetUserRequest\x1a\f.zoogle.User\x125\n" +
 	"\n" +
-	"UpdateUser\x12\x12.UpdateUserRequest\x1a\x05.UserB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
+	"UpdateUser\x12\x19.zoogle.UpdateUserRequest\x1a\f.zoogle.User\x12(\n" +
+	"\x04Self\x12\x12.zoogle.base.Empty\x1a\f.zoogle.UserB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -533,28 +544,31 @@ func file_user_proto_rawDescGZIP() []byte {
 var file_user_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_user_proto_goTypes = []any{
-	(LoginMethod)(0),          // 0: LoginMethod
-	(*User)(nil),              // 1: User
-	(*GetUserRequest)(nil),    // 2: GetUserRequest
-	(*UpdateUserRequest)(nil), // 3: UpdateUserRequest
-	(*LoginRequest)(nil),      // 4: LoginRequest
-	(*LoginResponse)(nil),     // 5: LoginResponse
-	(*RegisterRequest)(nil),   // 6: RegisterRequest
+	(LoginMethod)(0),          // 0: zoogle.LoginMethod
+	(*User)(nil),              // 1: zoogle.User
+	(*GetUserRequest)(nil),    // 2: zoogle.GetUserRequest
+	(*UpdateUserRequest)(nil), // 3: zoogle.UpdateUserRequest
+	(*LoginRequest)(nil),      // 4: zoogle.LoginRequest
+	(*LoginResponse)(nil),     // 5: zoogle.LoginResponse
+	(*RegisterRequest)(nil),   // 6: zoogle.RegisterRequest
+	(*Empty)(nil),             // 7: zoogle.base.Empty
 }
 var file_user_proto_depIdxs = []int32{
-	0, // 0: LoginRequest.method:type_name -> LoginMethod
-	1, // 1: LoginResponse.user:type_name -> User
-	0, // 2: RegisterRequest.method:type_name -> LoginMethod
-	4, // 3: UserService.Login:input_type -> LoginRequest
-	6, // 4: UserService.Register:input_type -> RegisterRequest
-	2, // 5: UserService.GetUser:input_type -> GetUserRequest
-	3, // 6: UserService.UpdateUser:input_type -> UpdateUserRequest
-	5, // 7: UserService.Login:output_type -> LoginResponse
-	1, // 8: UserService.Register:output_type -> User
-	1, // 9: UserService.GetUser:output_type -> User
-	1, // 10: UserService.UpdateUser:output_type -> User
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
+	0, // 0: zoogle.LoginRequest.method:type_name -> zoogle.LoginMethod
+	1, // 1: zoogle.LoginResponse.user:type_name -> zoogle.User
+	0, // 2: zoogle.RegisterRequest.method:type_name -> zoogle.LoginMethod
+	4, // 3: zoogle.UserService.Login:input_type -> zoogle.LoginRequest
+	6, // 4: zoogle.UserService.Register:input_type -> zoogle.RegisterRequest
+	2, // 5: zoogle.UserService.GetUser:input_type -> zoogle.GetUserRequest
+	3, // 6: zoogle.UserService.UpdateUser:input_type -> zoogle.UpdateUserRequest
+	7, // 7: zoogle.UserService.Self:input_type -> zoogle.base.Empty
+	5, // 8: zoogle.UserService.Login:output_type -> zoogle.LoginResponse
+	1, // 9: zoogle.UserService.Register:output_type -> zoogle.User
+	1, // 10: zoogle.UserService.GetUser:output_type -> zoogle.User
+	1, // 11: zoogle.UserService.UpdateUser:output_type -> zoogle.User
+	1, // 12: zoogle.UserService.Self:output_type -> zoogle.User
+	8, // [8:13] is the sub-list for method output_type
+	3, // [3:8] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -565,6 +579,7 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
+	file_empty_proto_init()
 	file_user_proto_msgTypes[2].OneofWrappers = []any{}
 	file_user_proto_msgTypes[3].OneofWrappers = []any{}
 	file_user_proto_msgTypes[5].OneofWrappers = []any{}

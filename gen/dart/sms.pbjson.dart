@@ -40,7 +40,7 @@ const SendSmsRequest$json = {
       '3': 2,
       '4': 1,
       '5': 14,
-      '6': '.SmsOperate',
+      '6': '.zoogle.SmsOperate',
       '10': 'operate'
     },
   ],
@@ -48,8 +48,8 @@ const SendSmsRequest$json = {
 
 /// Descriptor for `SendSmsRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sendSmsRequestDescriptor = $convert.base64Decode(
-    'Cg5TZW5kU21zUmVxdWVzdBIUCgVwaG9uZRgBIAEoCVIFcGhvbmUSJQoHb3BlcmF0ZRgCIAEoDj'
-    'ILLlNtc09wZXJhdGVSB29wZXJhdGU=');
+    'Cg5TZW5kU21zUmVxdWVzdBIUCgVwaG9uZRgBIAEoCVIFcGhvbmUSLAoHb3BlcmF0ZRgCIAEoDj'
+    'ISLnpvb2dsZS5TbXNPcGVyYXRlUgdvcGVyYXRl');
 
 @$core.Deprecated('Use sendSmsResponseDescriptor instead')
 const SendSmsResponse$json = {

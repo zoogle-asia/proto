@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SmsService_SendSms_FullMethodName = "/SmsService/SendSms"
+	SmsService_SendSms_FullMethodName = "/zoogle.SmsService/SendSms"
 )
 
 // SmsServiceClient is the client API for SmsService service.
@@ -108,7 +108,7 @@ func _SmsService_SendSms_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SmsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "SmsService",
+	ServiceName: "zoogle.SmsService",
 	HandlerType: (*SmsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -1,4 +1,5 @@
 syntax = "proto3";
+package  zoogle;
 
 option go_package = "asia.zoogle/zoogle-server/proto";
 

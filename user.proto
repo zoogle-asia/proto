@@ -1,6 +1,9 @@
 syntax = 'proto3';
+package zoogle;
 
 option go_package = "asia.zoogle/zoogle-server/proto";
+
+import "empty.proto";
 
 
 message  User {
@@ -17,6 +20,7 @@ service UserService {
   rpc Register(RegisterRequest) returns (User);
   rpc GetUser (GetUserRequest) returns (User);
   rpc UpdateUser(UpdateUserRequest) returns (User);
+  rpc Self(zoogle.base.Empty) returns (User);
 }
 
 message GetUserRequest {
@@ -55,7 +59,8 @@ message LoginResponse{
 message RegisterRequest{
   string name = 1;
   string phone = 2;
-  optional string smsCode=3;
-  optional string password = 4;
-  LoginMethod method = 5;
+  optional string avatar = 3;
+  optional string smsCode=4;
+  optional string password = 5;
+  LoginMethod method = 6;
 }

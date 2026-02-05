@@ -47,6 +47,7 @@ class User extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'User',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
@@ -130,6 +131,7 @@ class GetUserRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GetUserRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
@@ -192,6 +194,7 @@ class UpdateUserRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'UpdateUserRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6,
         defaultOrMaker: $fixnum.Int64.ZERO)
@@ -294,6 +297,7 @@ class LoginRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'LoginRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'phone')
     ..aOS(2, _omitFieldNames ? '' : 'password')
@@ -395,6 +399,7 @@ class LoginResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'LoginResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..aOS(2, _omitFieldNames ? '' : 'token')
@@ -444,6 +449,7 @@ class RegisterRequest extends $pb.GeneratedMessage {
   factory RegisterRequest({
     $core.String? name,
     $core.String? phone,
+    $core.String? avatar,
     $core.String? smsCode,
     $core.String? password,
     LoginMethod? method,
@@ -451,6 +457,7 @@ class RegisterRequest extends $pb.GeneratedMessage {
     final result = create();
     if (name != null) result.name = name;
     if (phone != null) result.phone = phone;
+    if (avatar != null) result.avatar = avatar;
     if (smsCode != null) result.smsCode = smsCode;
     if (password != null) result.password = password;
     if (method != null) result.method = method;
@@ -468,12 +475,14 @@ class RegisterRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'RegisterRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..aOS(2, _omitFieldNames ? '' : 'phone')
-    ..aOS(3, _omitFieldNames ? '' : 'smsCode', protoName: 'smsCode')
-    ..aOS(4, _omitFieldNames ? '' : 'password')
-    ..aE<LoginMethod>(5, _omitFieldNames ? '' : 'method',
+    ..aOS(3, _omitFieldNames ? '' : 'avatar')
+    ..aOS(4, _omitFieldNames ? '' : 'smsCode', protoName: 'smsCode')
+    ..aOS(5, _omitFieldNames ? '' : 'password')
+    ..aE<LoginMethod>(6, _omitFieldNames ? '' : 'method',
         enumValues: LoginMethod.values)
     ..hasRequiredFields = false;
 
@@ -515,31 +524,40 @@ class RegisterRequest extends $pb.GeneratedMessage {
   void clearPhone() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get smsCode => $_getSZ(2);
+  $core.String get avatar => $_getSZ(2);
   @$pb.TagNumber(3)
-  set smsCode($core.String value) => $_setString(2, value);
+  set avatar($core.String value) => $_setString(2, value);
   @$pb.TagNumber(3)
-  $core.bool hasSmsCode() => $_has(2);
+  $core.bool hasAvatar() => $_has(2);
   @$pb.TagNumber(3)
-  void clearSmsCode() => $_clearField(3);
+  void clearAvatar() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get password => $_getSZ(3);
+  $core.String get smsCode => $_getSZ(3);
   @$pb.TagNumber(4)
-  set password($core.String value) => $_setString(3, value);
+  set smsCode($core.String value) => $_setString(3, value);
   @$pb.TagNumber(4)
-  $core.bool hasPassword() => $_has(3);
+  $core.bool hasSmsCode() => $_has(3);
   @$pb.TagNumber(4)
-  void clearPassword() => $_clearField(4);
+  void clearSmsCode() => $_clearField(4);
 
   @$pb.TagNumber(5)
-  LoginMethod get method => $_getN(4);
+  $core.String get password => $_getSZ(4);
   @$pb.TagNumber(5)
-  set method(LoginMethod value) => $_setField(5, value);
+  set password($core.String value) => $_setString(4, value);
   @$pb.TagNumber(5)
-  $core.bool hasMethod() => $_has(4);
+  $core.bool hasPassword() => $_has(4);
   @$pb.TagNumber(5)
-  void clearMethod() => $_clearField(5);
+  void clearPassword() => $_clearField(5);
+
+  @$pb.TagNumber(6)
+  LoginMethod get method => $_getN(5);
+  @$pb.TagNumber(6)
+  set method(LoginMethod value) => $_setField(6, value);
+  @$pb.TagNumber(6)
+  $core.bool hasMethod() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMethod() => $_clearField(6);
 }
 
 const $core.bool _omitFieldNames =

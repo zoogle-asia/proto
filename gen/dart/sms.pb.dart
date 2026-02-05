@@ -42,6 +42,7 @@ class SendSmsRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'SendSmsRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'phone')
     ..aE<SmsOperate>(2, _omitFieldNames ? '' : 'operate',
@@ -106,6 +107,7 @@ class SendSmsResponse extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'SendSmsResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOB(1, _omitFieldNames ? '' : 'success')
     ..hasRequiredFields = false;

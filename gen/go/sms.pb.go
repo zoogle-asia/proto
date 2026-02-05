@@ -73,7 +73,7 @@ func (SmsOperate) EnumDescriptor() ([]byte, []int) {
 type SendSmsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Phone         string                 `protobuf:"bytes,1,opt,name=phone,proto3" json:"phone,omitempty"`
-	Operate       SmsOperate             `protobuf:"varint,2,opt,name=operate,proto3,enum=SmsOperate" json:"operate,omitempty"`
+	Operate       SmsOperate             `protobuf:"varint,2,opt,name=operate,proto3,enum=zoogle.SmsOperate" json:"operate,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -170,20 +170,20 @@ var File_sms_proto protoreflect.FileDescriptor
 
 const file_sms_proto_rawDesc = "" +
 	"\n" +
-	"\tsms.proto\"M\n" +
+	"\tsms.proto\x12\x06zoogle\"T\n" +
 	"\x0eSendSmsRequest\x12\x14\n" +
-	"\x05phone\x18\x01 \x01(\tR\x05phone\x12%\n" +
-	"\aoperate\x18\x02 \x01(\x0e2\v.SmsOperateR\aoperate\"+\n" +
+	"\x05phone\x18\x01 \x01(\tR\x05phone\x12,\n" +
+	"\aoperate\x18\x02 \x01(\x0e2\x12.zoogle.SmsOperateR\aoperate\"+\n" +
 	"\x0fSendSmsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess*8\n" +
 	"\n" +
 	"SmsOperate\x12\t\n" +
 	"\x05Login\x10\x00\x12\f\n" +
 	"\bRegister\x10\x01\x12\x11\n" +
-	"\rResetPassword\x10\x022:\n" +
+	"\rResetPassword\x10\x022H\n" +
 	"\n" +
-	"SmsService\x12,\n" +
-	"\aSendSms\x12\x0f.SendSmsRequest\x1a\x10.SendSmsResponseB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
+	"SmsService\x12:\n" +
+	"\aSendSms\x12\x16.zoogle.SendSmsRequest\x1a\x17.zoogle.SendSmsResponseB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
 
 var (
 	file_sms_proto_rawDescOnce sync.Once
@@ -200,14 +200,14 @@ func file_sms_proto_rawDescGZIP() []byte {
 var file_sms_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_sms_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_sms_proto_goTypes = []any{
-	(SmsOperate)(0),         // 0: SmsOperate
-	(*SendSmsRequest)(nil),  // 1: SendSmsRequest
-	(*SendSmsResponse)(nil), // 2: SendSmsResponse
+	(SmsOperate)(0),         // 0: zoogle.SmsOperate
+	(*SendSmsRequest)(nil),  // 1: zoogle.SendSmsRequest
+	(*SendSmsResponse)(nil), // 2: zoogle.SendSmsResponse
 }
 var file_sms_proto_depIdxs = []int32{
-	0, // 0: SendSmsRequest.operate:type_name -> SmsOperate
-	1, // 1: SmsService.SendSms:input_type -> SendSmsRequest
-	2, // 2: SmsService.SendSms:output_type -> SendSmsResponse
+	0, // 0: zoogle.SendSmsRequest.operate:type_name -> zoogle.SmsOperate
+	1, // 1: zoogle.SmsService.SendSms:input_type -> zoogle.SendSmsRequest
+	2, // 2: zoogle.SmsService.SendSms:output_type -> zoogle.SendSmsResponse
 	2, // [2:3] is the sub-list for method output_type
 	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

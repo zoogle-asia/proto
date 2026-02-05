@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package zoogle.base;
+
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+message  Empty{}

@@ -16,12 +16,13 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'empty.pb.dart' as $1;
 import 'user.pb.dart' as $0;
 
 export 'user.pb.dart';
 
 /// service
-@$pb.GrpcServiceName('UserService')
+@$pb.GrpcServiceName('zoogle.UserService')
 class UserServiceClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -61,29 +62,40 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$updateUser, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.User> self(
+    $1.Empty request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$self, request, options: options);
+  }
+
   // method descriptors
 
   static final _$login = $grpc.ClientMethod<$0.LoginRequest, $0.LoginResponse>(
-      '/UserService/Login',
+      '/zoogle.UserService/Login',
       ($0.LoginRequest value) => value.writeToBuffer(),
       $0.LoginResponse.fromBuffer);
   static final _$register = $grpc.ClientMethod<$0.RegisterRequest, $0.User>(
-      '/UserService/Register',
+      '/zoogle.UserService/Register',
       ($0.RegisterRequest value) => value.writeToBuffer(),
       $0.User.fromBuffer);
   static final _$getUser = $grpc.ClientMethod<$0.GetUserRequest, $0.User>(
-      '/UserService/GetUser',
+      '/zoogle.UserService/GetUser',
       ($0.GetUserRequest value) => value.writeToBuffer(),
       $0.User.fromBuffer);
   static final _$updateUser = $grpc.ClientMethod<$0.UpdateUserRequest, $0.User>(
-      '/UserService/UpdateUser',
+      '/zoogle.UserService/UpdateUser',
       ($0.UpdateUserRequest value) => value.writeToBuffer(),
+      $0.User.fromBuffer);
+  static final _$self = $grpc.ClientMethod<$1.Empty, $0.User>(
+      '/zoogle.UserService/Self',
+      ($1.Empty value) => value.writeToBuffer(),
       $0.User.fromBuffer);
 }
 
-@$pb.GrpcServiceName('UserService')
+@$pb.GrpcServiceName('zoogle.UserService')
 abstract class UserServiceBase extends $grpc.Service {
-  $core.String get $name => 'UserService';
+  $core.String get $name => 'zoogle.UserService';
 
   UserServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.LoginRequest, $0.LoginResponse>(
@@ -113,6 +125,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         false,
         ($core.List<$core.int> value) => $0.UpdateUserRequest.fromBuffer(value),
+        ($0.User value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Empty, $0.User>(
+        'Self',
+        self_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
         ($0.User value) => value.writeToBuffer()));
   }
 
@@ -147,4 +166,11 @@ abstract class UserServiceBase extends $grpc.Service {
 
   $async.Future<$0.User> updateUser(
       $grpc.ServiceCall call, $0.UpdateUserRequest request);
+
+  $async.Future<$0.User> self_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return self($call, await $request);
+  }
+
+  $async.Future<$0.User> self($grpc.ServiceCall call, $1.Empty request);
 }

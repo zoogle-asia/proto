@@ -118,7 +118,7 @@ const LoginRequest$json = {
       '3': 5,
       '4': 1,
       '5': 14,
-      '6': '.LoginMethod',
+      '6': '.zoogle.LoginMethod',
       '10': 'method'
     },
   ],
@@ -132,22 +132,22 @@ const LoginRequest$json = {
 final $typed_data.Uint8List loginRequestDescriptor = $convert.base64Decode(
     'CgxMb2dpblJlcXVlc3QSFAoFcGhvbmUYASABKAlSBXBob25lEhoKCHBhc3N3b3JkGAIgASgJUg'
     'hwYXNzd29yZBIgCglkZXZpY2VfaWQYAyABKAVIAFIIZGV2aWNlSWSIAQESHgoIc21zX2NvZGUY'
-    'BCABKAlIAVIHc21zQ29kZYgBARIkCgZtZXRob2QYBSABKA4yDC5Mb2dpbk1ldGhvZFIGbWV0aG'
-    '9kQgwKCl9kZXZpY2VfaWRCCwoJX3Ntc19jb2Rl');
+    'BCABKAlIAVIHc21zQ29kZYgBARIrCgZtZXRob2QYBSABKA4yEy56b29nbGUuTG9naW5NZXRob2'
+    'RSBm1ldGhvZEIMCgpfZGV2aWNlX2lkQgsKCV9zbXNfY29kZQ==');
 
 @$core.Deprecated('Use loginResponseDescriptor instead')
 const LoginResponse$json = {
   '1': 'LoginResponse',
   '2': [
-    {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.User', '10': 'user'},
+    {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.zoogle.User', '10': 'user'},
     {'1': 'token', '3': 2, '4': 1, '5': 9, '10': 'token'},
   ],
 };
 
 /// Descriptor for `LoginResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List loginResponseDescriptor = $convert.base64Decode(
-    'Cg1Mb2dpblJlc3BvbnNlEhkKBHVzZXIYASABKAsyBS5Vc2VyUgR1c2VyEhQKBXRva2VuGAIgAS'
-    'gJUgV0b2tlbg==');
+    'Cg1Mb2dpblJlc3BvbnNlEiAKBHVzZXIYASABKAsyDC56b29nbGUuVXNlclIEdXNlchIUCgV0b2'
+    'tlbhgCIAEoCVIFdG9rZW4=');
 
 @$core.Deprecated('Use registerRequestDescriptor instead')
 const RegisterRequest$json = {
@@ -155,34 +155,36 @@ const RegisterRequest$json = {
   '2': [
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
     {'1': 'phone', '3': 2, '4': 1, '5': 9, '10': 'phone'},
+    {'1': 'avatar', '3': 3, '4': 1, '5': 9, '9': 0, '10': 'avatar', '17': true},
     {
       '1': 'smsCode',
-      '3': 3,
+      '3': 4,
       '4': 1,
       '5': 9,
-      '9': 0,
+      '9': 1,
       '10': 'smsCode',
       '17': true
     },
     {
       '1': 'password',
-      '3': 4,
+      '3': 5,
       '4': 1,
       '5': 9,
-      '9': 1,
+      '9': 2,
       '10': 'password',
       '17': true
     },
     {
       '1': 'method',
-      '3': 5,
+      '3': 6,
       '4': 1,
       '5': 14,
-      '6': '.LoginMethod',
+      '6': '.zoogle.LoginMethod',
       '10': 'method'
     },
   ],
   '8': [
+    {'1': '_avatar'},
     {'1': '_smsCode'},
     {'1': '_password'},
   ],
@@ -191,6 +193,7 @@ const RegisterRequest$json = {
 /// Descriptor for `RegisterRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List registerRequestDescriptor = $convert.base64Decode(
     'Cg9SZWdpc3RlclJlcXVlc3QSEgoEbmFtZRgBIAEoCVIEbmFtZRIUCgVwaG9uZRgCIAEoCVIFcG'
-    'hvbmUSHQoHc21zQ29kZRgDIAEoCUgAUgdzbXNDb2RliAEBEh8KCHBhc3N3b3JkGAQgASgJSAFS'
-    'CHBhc3N3b3JkiAEBEiQKBm1ldGhvZBgFIAEoDjIMLkxvZ2luTWV0aG9kUgZtZXRob2RCCgoIX3'
-    'Ntc0NvZGVCCwoJX3Bhc3N3b3Jk');
+    'hvbmUSGwoGYXZhdGFyGAMgASgJSABSBmF2YXRhcogBARIdCgdzbXNDb2RlGAQgASgJSAFSB3Nt'
+    'c0NvZGWIAQESHwoIcGFzc3dvcmQYBSABKAlIAlIIcGFzc3dvcmSIAQESKwoGbWV0aG9kGAYgAS'
+    'gOMhMuem9vZ2xlLkxvZ2luTWV0aG9kUgZtZXRob2RCCQoHX2F2YXRhckIKCghfc21zQ29kZUIL'
+    'CglfcGFzc3dvcmQ=');
