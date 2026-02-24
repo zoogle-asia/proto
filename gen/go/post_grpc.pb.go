@@ -25,6 +25,8 @@ const (
 	PostService_DeletePost_FullMethodName      = "/zoogle.PostService/DeletePost"
 	PostService_GetPostPageable_FullMethodName = "/zoogle.PostService/GetPostPageable"
 	PostService_GetPostByUserId_FullMethodName = "/zoogle.PostService/GetPostByUserId"
+	PostService_LikePost_FullMethodName        = "/zoogle.PostService/LikePost"
+	PostService_GetPostDetail_FullMethodName   = "/zoogle.PostService/GetPostDetail"
 )
 
 // PostServiceClient is the client API for PostService service.
@@ -37,6 +39,8 @@ type PostServiceClient interface {
 	DeletePost(ctx context.Context, in *DeletePostRequest, opts ...grpc.CallOption) (*DeletePostResponse, error)
 	GetPostPageable(ctx context.Context, in *GetPostPageableRequest, opts ...grpc.CallOption) (*GetPostPageableResponse, error)
 	GetPostByUserId(ctx context.Context, in *GetPostByUserIdRequest, opts ...grpc.CallOption) (*GetPostByUserIdResponse, error)
+	LikePost(ctx context.Context, in *LikePostRequest, opts ...grpc.CallOption) (*LikePostResponse, error)
+	GetPostDetail(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*PostDetail, error)
 }
 
 type postServiceClient struct {
@@ -107,6 +111,26 @@ func (c *postServiceClient) GetPostByUserId(ctx context.Context, in *GetPostByUs
 	return out, nil
 }
 
+func (c *postServiceClient) LikePost(ctx context.Context, in *LikePostRequest, opts ...grpc.CallOption) (*LikePostResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LikePostResponse)
+	err := c.cc.Invoke(ctx, PostService_LikePost_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) GetPostDetail(ctx context.Context, in *GetPostRequest, opts ...grpc.CallOption) (*PostDetail, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PostDetail)
+	err := c.cc.Invoke(ctx, PostService_GetPostDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostServiceServer is the server API for PostService service.
 // All implementations must embed UnimplementedPostServiceServer
 // for forward compatibility.
@@ -117,6 +141,8 @@ type PostServiceServer interface {
 	DeletePost(context.Context, *DeletePostRequest) (*DeletePostResponse, error)
 	GetPostPageable(context.Context, *GetPostPageableRequest) (*GetPostPageableResponse, error)
 	GetPostByUserId(context.Context, *GetPostByUserIdRequest) (*GetPostByUserIdResponse, error)
+	LikePost(context.Context, *LikePostRequest) (*LikePostResponse, error)
+	GetPostDetail(context.Context, *GetPostRequest) (*PostDetail, error)
 	mustEmbedUnimplementedPostServiceServer()
 }
 
@@ -144,6 +170,12 @@ func (UnimplementedPostServiceServer) GetPostPageable(context.Context, *GetPostP
 }
 func (UnimplementedPostServiceServer) GetPostByUserId(context.Context, *GetPostByUserIdRequest) (*GetPostByUserIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPostByUserId not implemented")
+}
+func (UnimplementedPostServiceServer) LikePost(context.Context, *LikePostRequest) (*LikePostResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method LikePost not implemented")
+}
+func (UnimplementedPostServiceServer) GetPostDetail(context.Context, *GetPostRequest) (*PostDetail, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetPostDetail not implemented")
 }
 func (UnimplementedPostServiceServer) mustEmbedUnimplementedPostServiceServer() {}
 func (UnimplementedPostServiceServer) testEmbeddedByValue()                     {}
@@ -274,6 +306,42 @@ func _PostService_GetPostByUserId_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_LikePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LikePostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).LikePost(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_LikePost_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).LikePost(ctx, req.(*LikePostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_GetPostDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPostRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).GetPostDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostService_GetPostDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).GetPostDetail(ctx, req.(*GetPostRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PostService_ServiceDesc is the grpc.ServiceDesc for PostService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -304,6 +372,14 @@ var PostService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPostByUserId",
 			Handler:    _PostService_GetPostByUserId_Handler,
+		},
+		{
+			MethodName: "LikePost",
+			Handler:    _PostService_LikePost_Handler,
+		},
+		{
+			MethodName: "GetPostDetail",
+			Handler:    _PostService_GetPostDetail_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -74,6 +74,20 @@ class PostServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getPostByUserId, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.LikePostResponse> likePost(
+    $0.LikePostRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$likePost, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PostDetail> getPostDetail(
+    $0.GetPostRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getPostDetail, request, options: options);
+  }
+
   // method descriptors
 
   static final _$createPost =
@@ -106,6 +120,16 @@ class PostServiceClient extends $grpc.Client {
           '/zoogle.PostService/GetPostByUserId',
           ($0.GetPostByUserIdRequest value) => value.writeToBuffer(),
           $0.GetPostByUserIdResponse.fromBuffer);
+  static final _$likePost =
+      $grpc.ClientMethod<$0.LikePostRequest, $0.LikePostResponse>(
+          '/zoogle.PostService/LikePost',
+          ($0.LikePostRequest value) => value.writeToBuffer(),
+          $0.LikePostResponse.fromBuffer);
+  static final _$getPostDetail =
+      $grpc.ClientMethod<$0.GetPostRequest, $0.PostDetail>(
+          '/zoogle.PostService/GetPostDetail',
+          ($0.GetPostRequest value) => value.writeToBuffer(),
+          $0.PostDetail.fromBuffer);
 }
 
 @$pb.GrpcServiceName('zoogle.PostService')
@@ -159,6 +183,20 @@ abstract class PostServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetPostByUserIdRequest.fromBuffer(value),
         ($0.GetPostByUserIdResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.LikePostRequest, $0.LikePostResponse>(
+        'LikePost',
+        likePost_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.LikePostRequest.fromBuffer(value),
+        ($0.LikePostResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetPostRequest, $0.PostDetail>(
+        'GetPostDetail',
+        getPostDetail_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.GetPostRequest.fromBuffer(value),
+        ($0.PostDetail value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.CreatePostResponse> createPost_Pre($grpc.ServiceCall $call,
@@ -210,4 +248,20 @@ abstract class PostServiceBase extends $grpc.Service {
 
   $async.Future<$0.GetPostByUserIdResponse> getPostByUserId(
       $grpc.ServiceCall call, $0.GetPostByUserIdRequest request);
+
+  $async.Future<$0.LikePostResponse> likePost_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.LikePostRequest> $request) async {
+    return likePost($call, await $request);
+  }
+
+  $async.Future<$0.LikePostResponse> likePost(
+      $grpc.ServiceCall call, $0.LikePostRequest request);
+
+  $async.Future<$0.PostDetail> getPostDetail_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.GetPostRequest> $request) async {
+    return getPostDetail($call, await $request);
+  }
+
+  $async.Future<$0.PostDetail> getPostDetail(
+      $grpc.ServiceCall call, $0.GetPostRequest request);
 }

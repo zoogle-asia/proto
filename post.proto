@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "user.proto";
 
 package zoogle;
 
@@ -15,6 +16,13 @@ message Post {
   int64 updated_at = 7;
 }
 
+message PostDetail {
+  Post post = 1;
+  User author = 2;
+  int32  likes = 3;
+  bool liked_by_current_user = 4;
+}
+
 service PostService {
   rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
   rpc GetPost(GetPostRequest) returns (GetPostResponse);
@@ -24,6 +32,9 @@ service PostService {
   rpc GetPostPageable(GetPostPageableRequest) returns (GetPostPageableResponse);
 
   rpc GetPostByUserId(GetPostByUserIdRequest) returns (GetPostByUserIdResponse);
+
+  rpc LikePost(LikePostRequest) returns (LikePostResponse);
+  rpc GetPostDetail(GetPostRequest) returns (PostDetail);
 }
 
 message  CreatePostRequest{
@@ -82,4 +93,12 @@ message  GetPostByUserIdResponse{
   int32 page = 2;
   int32 page_size = 3;
   int32 total = 4;
+}
+
+message  LikePostRequest{
+  int64 post_id = 1;
+  bool like = 2;
+}
+
+message  LikePostResponse{
 }

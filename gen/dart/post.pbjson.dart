@@ -36,6 +36,36 @@ final $typed_data.Uint8List postDescriptor = $convert.base64Decode(
     'IAMoCVIEdGFncxIdCgpjcmVhdGVkX2F0GAYgASgDUgljcmVhdGVkQXQSHQoKdXBkYXRlZF9hdB'
     'gHIAEoA1IJdXBkYXRlZEF0');
 
+@$core.Deprecated('Use postDetailDescriptor instead')
+const PostDetail$json = {
+  '1': 'PostDetail',
+  '2': [
+    {'1': 'post', '3': 1, '4': 1, '5': 11, '6': '.zoogle.Post', '10': 'post'},
+    {
+      '1': 'author',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.zoogle.User',
+      '10': 'author'
+    },
+    {'1': 'likes', '3': 3, '4': 1, '5': 5, '10': 'likes'},
+    {
+      '1': 'liked_by_current_user',
+      '3': 4,
+      '4': 1,
+      '5': 8,
+      '10': 'likedByCurrentUser'
+    },
+  ],
+};
+
+/// Descriptor for `PostDetail`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List postDetailDescriptor = $convert.base64Decode(
+    'CgpQb3N0RGV0YWlsEiAKBHBvc3QYASABKAsyDC56b29nbGUuUG9zdFIEcG9zdBIkCgZhdXRob3'
+    'IYAiABKAsyDC56b29nbGUuVXNlclIGYXV0aG9yEhQKBWxpa2VzGAMgASgFUgVsaWtlcxIxChVs'
+    'aWtlZF9ieV9jdXJyZW50X3VzZXIYBCABKAhSEmxpa2VkQnlDdXJyZW50VXNlcg==');
+
 @$core.Deprecated('Use createPostRequestDescriptor instead')
 const CreatePostRequest$json = {
   '1': 'CreatePostRequest',
@@ -208,3 +238,26 @@ final $typed_data.Uint8List getPostByUserIdResponseDescriptor = $convert.base64D
     'ChdHZXRQb3N0QnlVc2VySWRSZXNwb25zZRIiCgVwb3N0cxgBIAMoCzIMLnpvb2dsZS5Qb3N0Ug'
     'Vwb3N0cxISCgRwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFnZVNpemUS'
     'FAoFdG90YWwYBCABKAVSBXRvdGFs');
+
+@$core.Deprecated('Use likePostRequestDescriptor instead')
+const LikePostRequest$json = {
+  '1': 'LikePostRequest',
+  '2': [
+    {'1': 'post_id', '3': 1, '4': 1, '5': 3, '10': 'postId'},
+    {'1': 'like', '3': 2, '4': 1, '5': 8, '10': 'like'},
+  ],
+};
+
+/// Descriptor for `LikePostRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List likePostRequestDescriptor = $convert.base64Decode(
+    'Cg9MaWtlUG9zdFJlcXVlc3QSFwoHcG9zdF9pZBgBIAEoA1IGcG9zdElkEhIKBGxpa2UYAiABKA'
+    'hSBGxpa2U=');
+
+@$core.Deprecated('Use likePostResponseDescriptor instead')
+const LikePostResponse$json = {
+  '1': 'LikePostResponse',
+};
+
+/// Descriptor for `LikePostResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List likePostResponseDescriptor =
+    $convert.base64Decode('ChBMaWtlUG9zdFJlc3BvbnNl');

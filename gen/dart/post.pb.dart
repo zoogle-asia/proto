@@ -15,6 +15,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'user.pb.dart' as $1;
+
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class Post extends $pb.GeneratedMessage {
@@ -128,6 +130,101 @@ class Post extends $pb.GeneratedMessage {
   $core.bool hasUpdatedAt() => $_has(6);
   @$pb.TagNumber(7)
   void clearUpdatedAt() => $_clearField(7);
+}
+
+class PostDetail extends $pb.GeneratedMessage {
+  factory PostDetail({
+    Post? post,
+    $1.User? author,
+    $core.int? likes,
+    $core.bool? likedByCurrentUser,
+  }) {
+    final result = create();
+    if (post != null) result.post = post;
+    if (author != null) result.author = author;
+    if (likes != null) result.likes = likes;
+    if (likedByCurrentUser != null)
+      result.likedByCurrentUser = likedByCurrentUser;
+    return result;
+  }
+
+  PostDetail._();
+
+  factory PostDetail.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory PostDetail.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'PostDetail',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
+      createEmptyInstance: create)
+    ..aOM<Post>(1, _omitFieldNames ? '' : 'post', subBuilder: Post.create)
+    ..aOM<$1.User>(2, _omitFieldNames ? '' : 'author',
+        subBuilder: $1.User.create)
+    ..aI(3, _omitFieldNames ? '' : 'likes')
+    ..aOB(4, _omitFieldNames ? '' : 'likedByCurrentUser')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PostDetail clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  PostDetail copyWith(void Function(PostDetail) updates) =>
+      super.copyWith((message) => updates(message as PostDetail)) as PostDetail;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PostDetail create() => PostDetail._();
+  @$core.override
+  PostDetail createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static PostDetail getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PostDetail>(create);
+  static PostDetail? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  Post get post => $_getN(0);
+  @$pb.TagNumber(1)
+  set post(Post value) => $_setField(1, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPost() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPost() => $_clearField(1);
+  @$pb.TagNumber(1)
+  Post ensurePost() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $1.User get author => $_getN(1);
+  @$pb.TagNumber(2)
+  set author($1.User value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasAuthor() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAuthor() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $1.User ensureAuthor() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.int get likes => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set likes($core.int value) => $_setSignedInt32(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasLikes() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLikes() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get likedByCurrentUser => $_getBF(3);
+  @$pb.TagNumber(4)
+  set likedByCurrentUser($core.bool value) => $_setBool(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasLikedByCurrentUser() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearLikedByCurrentUser() => $_clearField(4);
 }
 
 class CreatePostRequest extends $pb.GeneratedMessage {
@@ -924,6 +1021,110 @@ class GetPostByUserIdResponse extends $pb.GeneratedMessage {
   $core.bool hasTotal() => $_has(3);
   @$pb.TagNumber(4)
   void clearTotal() => $_clearField(4);
+}
+
+class LikePostRequest extends $pb.GeneratedMessage {
+  factory LikePostRequest({
+    $fixnum.Int64? postId,
+    $core.bool? like,
+  }) {
+    final result = create();
+    if (postId != null) result.postId = postId;
+    if (like != null) result.like = like;
+    return result;
+  }
+
+  LikePostRequest._();
+
+  factory LikePostRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LikePostRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LikePostRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
+      createEmptyInstance: create)
+    ..aInt64(1, _omitFieldNames ? '' : 'postId')
+    ..aOB(2, _omitFieldNames ? '' : 'like')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LikePostRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LikePostRequest copyWith(void Function(LikePostRequest) updates) =>
+      super.copyWith((message) => updates(message as LikePostRequest))
+          as LikePostRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LikePostRequest create() => LikePostRequest._();
+  @$core.override
+  LikePostRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LikePostRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LikePostRequest>(create);
+  static LikePostRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get postId => $_getI64(0);
+  @$pb.TagNumber(1)
+  set postId($fixnum.Int64 value) => $_setInt64(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasPostId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPostId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get like => $_getBF(1);
+  @$pb.TagNumber(2)
+  set like($core.bool value) => $_setBool(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLike() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLike() => $_clearField(2);
+}
+
+class LikePostResponse extends $pb.GeneratedMessage {
+  factory LikePostResponse() => create();
+
+  LikePostResponse._();
+
+  factory LikePostResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory LikePostResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'LikePostResponse',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
+      createEmptyInstance: create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LikePostResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  LikePostResponse copyWith(void Function(LikePostResponse) updates) =>
+      super.copyWith((message) => updates(message as LikePostResponse))
+          as LikePostResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static LikePostResponse create() => LikePostResponse._();
+  @$core.override
+  LikePostResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static LikePostResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<LikePostResponse>(create);
+  static LikePostResponse? _defaultInstance;
 }
 
 const $core.bool _omitFieldNames =
