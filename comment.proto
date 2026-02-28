@@ -1,0 +1,52 @@
+syntax = 'proto3';
+
+package zoogle;
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+import "base.proto";
+
+// 评论
+message Comment {
+  int64 id = 1;
+  int64 post_id = 2;
+  int64 root_id = 3; // 根评论id，一级评论root_id=0
+  int64 parent_id = 4; // 父评论id，一级评论parent_id=0
+  int64 author_id = 5;
+  string content = 6;
+  int64 created_at = 7;
+  int64 deleted_at = 8; // 删除时间，0表示未删除
+  repeated Comment replies = 9; // 回复列表，最多两层
+}
+
+
+
+// rpc
+service CommentService {
+  // 创建评论
+  rpc CreateComment(CreateCommentRequest) returns (zoogle.base.Empty);
+  // 删除评论，软删除
+  rpc DeleteComment(DeleteCommentRequest) returns (zoogle.base.Empty);
+  // 根据post_id获取顶级评论，分页
+  rpc GetCommentsByPostId(GetCommentsByPostIdRequest) returns (CommentsPageableResponse);
+}
+
+
+message  CreateCommentRequest {
+  int64 post_id = 1;
+  int64 parent_id = 2; // 父评论id，一级评论parent_id=0
+  string content = 3;
+}
+
+message DeleteCommentRequest {
+  int64 id = 1;
+}
+
+message  GetCommentsByPostIdRequest{
+  int64 post_id = 1;
+  zoogle.base.Pageable pageable = 2;
+}
+
+message  CommentsPageableResponse {
+  repeated Comment comments = 1;
+  int64 total = 2;
+}

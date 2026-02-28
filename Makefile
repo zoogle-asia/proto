@@ -1,16 +1,17 @@
-.PHONY: all gen_proto gen_proto_go gen_proto_dart clean
+.PHONY: proto gen_proto_go gen_proto_dart clean
 
-all: clean gen_proto
+THIS_FILE := $(lastword $(MAKEFILE_LIST))
+THIS_DIR  := $(dir $(abspath $(THIS_FILE)))
 
-gen_proto: gen_proto_dart gen_proto_go
+proto: clean gen_proto_dart gen_proto_go
 
 gen_proto_go:
-	mkdir -p ./gen/go && \
-	protoc --go_out=./gen/go --go-grpc_out=./gen/go --go_opt=paths=source_relative --go-grpc_opt=paths=source_relative *.proto
+	mkdir -p $(THIS_DIR)/gen/go && \
+	protoc --go_out=$(THIS_DIR)/gen/go --go-grpc_out=$(THIS_DIR)/gen/go --go_opt=paths=source_relative --go-grpc_opt=paths=source_relative --proto_path $(THIS_DIR) $(THIS_DIR)/*.proto
 
 gen_proto_dart:
-	mkdir -p ./gen/dart && \
-	protoc --dart_out=grpc:gen/dart *.proto
+	mkdir -p $(THIS_DIR)/gen/dart && \
+	protoc --dart_out=grpc:$(THIS_DIR)/gen/dart --proto_path $(THIS_DIR) $(THIS_DIR)/*.proto
 
 clean:
-	rm -rf ./gen
+	rm -rf $(THIS_DIR)/gen

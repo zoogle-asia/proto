@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from empty.proto.
+// Generated from comment.proto.
 
 // @dart = 3.3
 

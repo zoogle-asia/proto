@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package zoogle.base;
+
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+message  Empty{}
+
+message Pageable {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+
+message ErrorInfo {
+  int32 code = 1;   // 错误码，0表示成功，非0表示失败
+  string message = 2; // 提示信息，简要描述错误原因
+  string details = 3; // 错误详情，可能包含堆栈信息等
+}

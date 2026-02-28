@@ -3,7 +3,7 @@ package zoogle;
 
 option go_package = "asia.zoogle/zoogle-server/proto";
 
-import "empty.proto";
+import "base.proto";
 
 
 message  User {

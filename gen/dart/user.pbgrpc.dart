@@ -16,7 +16,7 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'empty.pb.dart' as $1;
+import 'base.pb.dart' as $1;
 import 'user.pb.dart' as $0;
 
 export 'user.pb.dart';

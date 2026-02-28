@@ -1,0 +1,19 @@
+syntax = 'proto3';
+import "post.proto";
+
+package zoogle;
+
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+
+message GetFeedRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+
+message GetFeedResponse {
+  repeated PostDetail posts = 1;
+}
+
+

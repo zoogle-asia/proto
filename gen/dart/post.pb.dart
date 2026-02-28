@@ -132,6 +132,7 @@ class Post extends $pb.GeneratedMessage {
   void clearUpdatedAt() => $_clearField(7);
 }
 
+/// 带发布人和喜欢标志
 class PostDetail extends $pb.GeneratedMessage {
   factory PostDetail({
     Post? post,

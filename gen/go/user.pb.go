@@ -477,7 +477,8 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\x06zoogle\x1a\vempty.proto\"X\n" +
+	"user.proto\x12\x06zoogle\x1a\n" +
+	"base.proto\"X\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -579,7 +580,7 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
-	file_empty_proto_init()
+	file_base_proto_init()
 	file_user_proto_msgTypes[2].OneofWrappers = []any{}
 	file_user_proto_msgTypes[3].OneofWrappers = []any{}
 	file_user_proto_msgTypes[5].OneofWrappers = []any{}

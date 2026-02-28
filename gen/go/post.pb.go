@@ -113,6 +113,7 @@ func (x *Post) GetUpdatedAt() int64 {
 	return 0
 }
 
+// 带发布人和喜欢标志
 type PostDetail struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Post               *Post                  `protobuf:"bytes,1,opt,name=post,proto3" json:"post,omitempty"`

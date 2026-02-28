@@ -16,6 +16,7 @@ message Post {
   int64 updated_at = 7;
 }
 
+/*带发布人和喜欢标志*/
 message PostDetail {
   Post post = 1;
   User author = 2;
