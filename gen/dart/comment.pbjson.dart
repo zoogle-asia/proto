@@ -35,6 +35,14 @@ const Comment$json = {
       '6': '.zoogle.Comment',
       '10': 'replies'
     },
+    {
+      '1': 'author',
+      '3': 10,
+      '4': 1,
+      '5': 11,
+      '6': '.zoogle.User',
+      '10': 'author'
+    },
   ],
 };
 
@@ -44,7 +52,8 @@ final $typed_data.Uint8List commentDescriptor = $convert.base64Decode(
     '9vdF9pZBgDIAEoA1IGcm9vdElkEhsKCXBhcmVudF9pZBgEIAEoA1IIcGFyZW50SWQSGwoJYXV0'
     'aG9yX2lkGAUgASgDUghhdXRob3JJZBIYCgdjb250ZW50GAYgASgJUgdjb250ZW50Eh0KCmNyZW'
     'F0ZWRfYXQYByABKANSCWNyZWF0ZWRBdBIdCgpkZWxldGVkX2F0GAggASgDUglkZWxldGVkQXQS'
-    'KQoHcmVwbGllcxgJIAMoCzIPLnpvb2dsZS5Db21tZW50UgdyZXBsaWVz');
+    'KQoHcmVwbGllcxgJIAMoCzIPLnpvb2dsZS5Db21tZW50UgdyZXBsaWVzEiQKBmF1dGhvchgKIA'
+    'EoCzIMLnpvb2dsZS5Vc2VyUgZhdXRob3I=');
 
 @$core.Deprecated('Use createCommentRequestDescriptor instead')
 const CreateCommentRequest$json = {

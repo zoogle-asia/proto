@@ -33,6 +33,7 @@ type Comment struct {
 	CreatedAt     int64                  `protobuf:"varint,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	DeletedAt     int64                  `protobuf:"varint,8,opt,name=deleted_at,json=deletedAt,proto3" json:"deleted_at,omitempty"` // 删除时间，0表示未删除
 	Replies       []*Comment             `protobuf:"bytes,9,rep,name=replies,proto3" json:"replies,omitempty"`                       // 回复列表，最多两层
+	Author        *User                  `protobuf:"bytes,10,opt,name=author,proto3" json:"author,omitempty"`                        // 作者信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,6 +127,13 @@ func (x *Comment) GetDeletedAt() int64 {
 func (x *Comment) GetReplies() []*Comment {
 	if x != nil {
 		return x.Replies
+	}
+	return nil
+}
+
+func (x *Comment) GetAuthor() *User {
+	if x != nil {
+		return x.Author
 	}
 	return nil
 }
@@ -343,7 +351,8 @@ var File_comment_proto protoreflect.FileDescriptor
 const file_comment_proto_rawDesc = "" +
 	"\n" +
 	"\rcomment.proto\x12\x06zoogle\x1a\n" +
-	"base.proto\"\x88\x02\n" +
+	"base.proto\x1a\n" +
+	"user.proto\"\xae\x02\n" +
 	"\aComment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x17\n" +
 	"\apost_id\x18\x02 \x01(\x03R\x06postId\x12\x17\n" +
@@ -355,7 +364,9 @@ const file_comment_proto_rawDesc = "" +
 	"created_at\x18\a \x01(\x03R\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"deleted_at\x18\b \x01(\x03R\tdeletedAt\x12)\n" +
-	"\areplies\x18\t \x03(\v2\x0f.zoogle.CommentR\areplies\"f\n" +
+	"\areplies\x18\t \x03(\v2\x0f.zoogle.CommentR\areplies\x12$\n" +
+	"\x06author\x18\n" +
+	" \x01(\v2\f.zoogle.UserR\x06author\"f\n" +
 	"\x14CreateCommentRequest\x12\x17\n" +
 	"\apost_id\x18\x01 \x01(\x03R\x06postId\x12\x1b\n" +
 	"\tparent_id\x18\x02 \x01(\x03R\bparentId\x12\x18\n" +
@@ -392,24 +403,26 @@ var file_comment_proto_goTypes = []any{
 	(*DeleteCommentRequest)(nil),       // 2: zoogle.DeleteCommentRequest
 	(*GetCommentsByPostIdRequest)(nil), // 3: zoogle.GetCommentsByPostIdRequest
 	(*CommentsPageableResponse)(nil),   // 4: zoogle.CommentsPageableResponse
-	(*Pageable)(nil),                   // 5: zoogle.base.Pageable
-	(*Empty)(nil),                      // 6: zoogle.base.Empty
+	(*User)(nil),                       // 5: zoogle.User
+	(*Pageable)(nil),                   // 6: zoogle.base.Pageable
+	(*Empty)(nil),                      // 7: zoogle.base.Empty
 }
 var file_comment_proto_depIdxs = []int32{
 	0, // 0: zoogle.Comment.replies:type_name -> zoogle.Comment
-	5, // 1: zoogle.GetCommentsByPostIdRequest.pageable:type_name -> zoogle.base.Pageable
-	0, // 2: zoogle.CommentsPageableResponse.comments:type_name -> zoogle.Comment
-	1, // 3: zoogle.CommentService.CreateComment:input_type -> zoogle.CreateCommentRequest
-	2, // 4: zoogle.CommentService.DeleteComment:input_type -> zoogle.DeleteCommentRequest
-	3, // 5: zoogle.CommentService.GetCommentsByPostId:input_type -> zoogle.GetCommentsByPostIdRequest
-	6, // 6: zoogle.CommentService.CreateComment:output_type -> zoogle.base.Empty
-	6, // 7: zoogle.CommentService.DeleteComment:output_type -> zoogle.base.Empty
-	4, // 8: zoogle.CommentService.GetCommentsByPostId:output_type -> zoogle.CommentsPageableResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 1: zoogle.Comment.author:type_name -> zoogle.User
+	6, // 2: zoogle.GetCommentsByPostIdRequest.pageable:type_name -> zoogle.base.Pageable
+	0, // 3: zoogle.CommentsPageableResponse.comments:type_name -> zoogle.Comment
+	1, // 4: zoogle.CommentService.CreateComment:input_type -> zoogle.CreateCommentRequest
+	2, // 5: zoogle.CommentService.DeleteComment:input_type -> zoogle.DeleteCommentRequest
+	3, // 6: zoogle.CommentService.GetCommentsByPostId:input_type -> zoogle.GetCommentsByPostIdRequest
+	7, // 7: zoogle.CommentService.CreateComment:output_type -> zoogle.base.Empty
+	7, // 8: zoogle.CommentService.DeleteComment:output_type -> zoogle.base.Empty
+	4, // 9: zoogle.CommentService.GetCommentsByPostId:output_type -> zoogle.CommentsPageableResponse
+	7, // [7:10] is the sub-list for method output_type
+	4, // [4:7] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_comment_proto_init() }
@@ -418,6 +431,7 @@ func file_comment_proto_init() {
 		return
 	}
 	file_base_proto_init()
+	file_user_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

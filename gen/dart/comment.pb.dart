@@ -16,6 +16,7 @@ import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'base.pb.dart' as $1;
+import 'user.pb.dart' as $2;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -31,6 +32,7 @@ class Comment extends $pb.GeneratedMessage {
     $fixnum.Int64? createdAt,
     $fixnum.Int64? deletedAt,
     $core.Iterable<Comment>? replies,
+    $2.User? author,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -42,6 +44,7 @@ class Comment extends $pb.GeneratedMessage {
     if (createdAt != null) result.createdAt = createdAt;
     if (deletedAt != null) result.deletedAt = deletedAt;
     if (replies != null) result.replies.addAll(replies);
+    if (author != null) result.author = author;
     return result;
   }
 
@@ -68,6 +71,8 @@ class Comment extends $pb.GeneratedMessage {
     ..aInt64(8, _omitFieldNames ? '' : 'deletedAt')
     ..pPM<Comment>(9, _omitFieldNames ? '' : 'replies',
         subBuilder: Comment.create)
+    ..aOM<$2.User>(10, _omitFieldNames ? '' : 'author',
+        subBuilder: $2.User.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -162,6 +167,17 @@ class Comment extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(9)
   $pb.PbList<Comment> get replies => $_getList(8);
+
+  @$pb.TagNumber(10)
+  $2.User get author => $_getN(9);
+  @$pb.TagNumber(10)
+  set author($2.User value) => $_setField(10, value);
+  @$pb.TagNumber(10)
+  $core.bool hasAuthor() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearAuthor() => $_clearField(10);
+  @$pb.TagNumber(10)
+  $2.User ensureAuthor() => $_ensure(9);
 }
 
 class CreateCommentRequest extends $pb.GeneratedMessage {

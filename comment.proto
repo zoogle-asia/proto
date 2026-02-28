@@ -4,6 +4,7 @@ package zoogle;
 option go_package = "asia.zoogle/zoogle-server/proto";
 
 import "base.proto";
+import "user.proto";
 
 // 评论
 message Comment {
@@ -16,6 +17,7 @@ message Comment {
   int64 created_at = 7;
   int64 deleted_at = 8; // 删除时间，0表示未删除
   repeated Comment replies = 9; // 回复列表，最多两层
+  User author = 10; // 作者信息
 }
 
 
