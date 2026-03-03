@@ -1,0 +1,20 @@
+syntax = 'proto3';
+
+package zoogle;
+
+option go_package = "asia.zoogle/zoogle-server/proto";
+
+
+service OssService {
+  rpc GetPresignedUrl(GetPreSignedUrlRequest) returns (GetPreSignedUrlResponse);
+}
+
+message  GetPreSignedUrlRequest{
+  string filename = 1; // 文件名，包含扩展名
+  string content_type = 2; // 文件类型，如image/png
+}
+message GetPreSignedUrlResponse {
+  string url = 1; // 预签名URL
+  string key = 2; // 文件在OSS中的key
+}
+
