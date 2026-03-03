@@ -777,7 +777,7 @@ class GetPostPageableRequest extends $pb.GeneratedMessage {
 
 class GetPostPageableResponse extends $pb.GeneratedMessage {
   factory GetPostPageableResponse({
-    $core.Iterable<Post>? posts,
+    $core.Iterable<PostDetail>? posts,
     $core.int? page,
     $core.int? pageSize,
     $core.int? total,
@@ -803,7 +803,8 @@ class GetPostPageableResponse extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'GetPostPageableResponse',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
-    ..pPM<Post>(1, _omitFieldNames ? '' : 'posts', subBuilder: Post.create)
+    ..pPM<PostDetail>(1, _omitFieldNames ? '' : 'posts',
+        subBuilder: PostDetail.create)
     ..aI(2, _omitFieldNames ? '' : 'page')
     ..aI(3, _omitFieldNames ? '' : 'pageSize')
     ..aI(4, _omitFieldNames ? '' : 'total')
@@ -830,7 +831,7 @@ class GetPostPageableResponse extends $pb.GeneratedMessage {
   static GetPostPageableResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $pb.PbList<Post> get posts => $_getList(0);
+  $pb.PbList<PostDetail> get posts => $_getList(0);
 
   @$pb.TagNumber(2)
   $core.int get page => $_getIZ(1);

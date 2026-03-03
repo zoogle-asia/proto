@@ -22,6 +22,7 @@ const (
 	CommentService_CreateComment_FullMethodName       = "/zoogle.CommentService/CreateComment"
 	CommentService_DeleteComment_FullMethodName       = "/zoogle.CommentService/DeleteComment"
 	CommentService_GetCommentsByPostId_FullMethodName = "/zoogle.CommentService/GetCommentsByPostId"
+	CommentService_GetCommentByRootId_FullMethodName  = "/zoogle.CommentService/GetCommentByRootId"
 )
 
 // CommentServiceClient is the client API for CommentService service.
@@ -36,6 +37,7 @@ type CommentServiceClient interface {
 	DeleteComment(ctx context.Context, in *DeleteCommentRequest, opts ...grpc.CallOption) (*Empty, error)
 	// 根据post_id获取顶级评论，分页
 	GetCommentsByPostId(ctx context.Context, in *GetCommentsByPostIdRequest, opts ...grpc.CallOption) (*CommentsPageableResponse, error)
+	GetCommentByRootId(ctx context.Context, in *GetCommentByRootIdRequest, opts ...grpc.CallOption) (*CommentsPageableResponse, error)
 }
 
 type commentServiceClient struct {
@@ -76,6 +78,16 @@ func (c *commentServiceClient) GetCommentsByPostId(ctx context.Context, in *GetC
 	return out, nil
 }
 
+func (c *commentServiceClient) GetCommentByRootId(ctx context.Context, in *GetCommentByRootIdRequest, opts ...grpc.CallOption) (*CommentsPageableResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CommentsPageableResponse)
+	err := c.cc.Invoke(ctx, CommentService_GetCommentByRootId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommentServiceServer is the server API for CommentService service.
 // All implementations must embed UnimplementedCommentServiceServer
 // for forward compatibility.
@@ -88,6 +100,7 @@ type CommentServiceServer interface {
 	DeleteComment(context.Context, *DeleteCommentRequest) (*Empty, error)
 	// 根据post_id获取顶级评论，分页
 	GetCommentsByPostId(context.Context, *GetCommentsByPostIdRequest) (*CommentsPageableResponse, error)
+	GetCommentByRootId(context.Context, *GetCommentByRootIdRequest) (*CommentsPageableResponse, error)
 	mustEmbedUnimplementedCommentServiceServer()
 }
 
@@ -106,6 +119,9 @@ func (UnimplementedCommentServiceServer) DeleteComment(context.Context, *DeleteC
 }
 func (UnimplementedCommentServiceServer) GetCommentsByPostId(context.Context, *GetCommentsByPostIdRequest) (*CommentsPageableResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetCommentsByPostId not implemented")
+}
+func (UnimplementedCommentServiceServer) GetCommentByRootId(context.Context, *GetCommentByRootIdRequest) (*CommentsPageableResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCommentByRootId not implemented")
 }
 func (UnimplementedCommentServiceServer) mustEmbedUnimplementedCommentServiceServer() {}
 func (UnimplementedCommentServiceServer) testEmbeddedByValue()                        {}
@@ -182,6 +198,24 @@ func _CommentService_GetCommentsByPostId_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommentService_GetCommentByRootId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommentByRootIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommentServiceServer).GetCommentByRootId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommentService_GetCommentByRootId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommentServiceServer).GetCommentByRootId(ctx, req.(*GetCommentByRootIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommentService_ServiceDesc is the grpc.ServiceDesc for CommentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -200,6 +234,10 @@ var CommentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCommentsByPostId",
 			Handler:    _CommentService_GetCommentsByPostId_Handler,
+		},
+		{
+			MethodName: "GetCommentByRootId",
+			Handler:    _CommentService_GetCommentByRootId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

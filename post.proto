@@ -77,7 +77,7 @@ message GetPostPageableRequest{
   optional  string  q = 3;
 }
 message GetPostPageableResponse{
-  repeated Post posts = 1;
+  repeated PostDetail posts = 1;
   int32 page = 2;
   int32 page_size = 3;
   int32 total = 4;

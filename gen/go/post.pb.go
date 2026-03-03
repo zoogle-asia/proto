@@ -636,7 +636,7 @@ func (x *GetPostPageableRequest) GetQ() string {
 
 type GetPostPageableResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Posts         []*Post                `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
+	Posts         []*PostDetail          `protobuf:"bytes,1,rep,name=posts,proto3" json:"posts,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
 	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	Total         int32                  `protobuf:"varint,4,opt,name=total,proto3" json:"total,omitempty"`
@@ -674,7 +674,7 @@ func (*GetPostPageableResponse) Descriptor() ([]byte, []int) {
 	return file_post_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetPostPageableResponse) GetPosts() []*Post {
+func (x *GetPostPageableResponse) GetPosts() []*PostDetail {
 	if x != nil {
 		return x.Posts
 	}
@@ -966,9 +966,9 @@ const file_post_proto_rawDesc = "" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x02 \x01(\x05R\bpageSize\x12\x11\n" +
 	"\x01q\x18\x03 \x01(\tH\x00R\x01q\x88\x01\x01B\x04\n" +
-	"\x02_q\"\x84\x01\n" +
-	"\x17GetPostPageableResponse\x12\"\n" +
-	"\x05posts\x18\x01 \x03(\v2\f.zoogle.PostR\x05posts\x12\x12\n" +
+	"\x02_q\"\x8a\x01\n" +
+	"\x17GetPostPageableResponse\x12(\n" +
+	"\x05posts\x18\x01 \x03(\v2\x12.zoogle.PostDetailR\x05posts\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x14\n" +
 	"\x05total\x18\x04 \x01(\x05R\x05total\"b\n" +
@@ -1036,7 +1036,7 @@ var file_post_proto_depIdxs = []int32{
 	0,  // 2: zoogle.CreatePostResponse.post:type_name -> zoogle.Post
 	0,  // 3: zoogle.GetPostResponse.post:type_name -> zoogle.Post
 	0,  // 4: zoogle.UpdatePostResponse.post:type_name -> zoogle.Post
-	0,  // 5: zoogle.GetPostPageableResponse.posts:type_name -> zoogle.Post
+	1,  // 5: zoogle.GetPostPageableResponse.posts:type_name -> zoogle.PostDetail
 	0,  // 6: zoogle.GetPostByUserIdResponse.posts:type_name -> zoogle.Post
 	2,  // 7: zoogle.PostService.CreatePost:input_type -> zoogle.CreatePostRequest
 	4,  // 8: zoogle.PostService.GetPost:input_type -> zoogle.GetPostRequest

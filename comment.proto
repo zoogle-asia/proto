@@ -30,6 +30,7 @@ service CommentService {
   rpc DeleteComment(DeleteCommentRequest) returns (zoogle.base.Empty);
   // 根据post_id获取顶级评论，分页
   rpc GetCommentsByPostId(GetCommentsByPostIdRequest) returns (CommentsPageableResponse);
+  rpc GetCommentByRootId(GetCommentByRootIdRequest) returns (CommentsPageableResponse);
 }
 
 
@@ -51,4 +52,10 @@ message  GetCommentsByPostIdRequest{
 message  CommentsPageableResponse {
   repeated Comment comments = 1;
   int64 total = 2;
+}
+
+
+message GetCommentByRootIdRequest {
+  int64  root_id = 1;
+  zoogle.base.Pageable pageable = 2;
 }

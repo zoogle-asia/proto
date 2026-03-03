@@ -445,6 +445,76 @@ class CommentsPageableResponse extends $pb.GeneratedMessage {
   void clearTotal() => $_clearField(2);
 }
 
+class GetCommentByRootIdRequest extends $pb.GeneratedMessage {
+  factory GetCommentByRootIdRequest({
+    $fixnum.Int64? rootId,
+    $1.Pageable? pageable,
+  }) {
+    final result = create();
+    if (rootId != null) result.rootId = rootId;
+    if (pageable != null) result.pageable = pageable;
+    return result;
+  }
+
+  GetCommentByRootIdRequest._();
+
+  factory GetCommentByRootIdRequest.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory GetCommentByRootIdRequest.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'GetCommentByRootIdRequest',
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
+      createEmptyInstance: create)
+    ..aInt64(1, _omitFieldNames ? '' : 'rootId')
+    ..aOM<$1.Pageable>(2, _omitFieldNames ? '' : 'pageable',
+        subBuilder: $1.Pageable.create)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetCommentByRootIdRequest clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  GetCommentByRootIdRequest copyWith(
+          void Function(GetCommentByRootIdRequest) updates) =>
+      super.copyWith((message) => updates(message as GetCommentByRootIdRequest))
+          as GetCommentByRootIdRequest;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetCommentByRootIdRequest create() => GetCommentByRootIdRequest._();
+  @$core.override
+  GetCommentByRootIdRequest createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static GetCommentByRootIdRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetCommentByRootIdRequest>(create);
+  static GetCommentByRootIdRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get rootId => $_getI64(0);
+  @$pb.TagNumber(1)
+  set rootId($fixnum.Int64 value) => $_setInt64(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasRootId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRootId() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.Pageable get pageable => $_getN(1);
+  @$pb.TagNumber(2)
+  set pageable($1.Pageable value) => $_setField(2, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPageable() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPageable() => $_clearField(2);
+  @$pb.TagNumber(2)
+  $1.Pageable ensurePageable() => $_ensure(1);
+}
+
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

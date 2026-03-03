@@ -58,6 +58,13 @@ class CommentServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getCommentsByPostId, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.CommentsPageableResponse> getCommentByRootId(
+    $0.GetCommentByRootIdRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getCommentByRootId, request, options: options);
+  }
+
   // method descriptors
 
   static final _$createComment =
@@ -74,6 +81,11 @@ class CommentServiceClient extends $grpc.Client {
           $0.GetCommentsByPostIdRequest, $0.CommentsPageableResponse>(
       '/zoogle.CommentService/GetCommentsByPostId',
       ($0.GetCommentsByPostIdRequest value) => value.writeToBuffer(),
+      $0.CommentsPageableResponse.fromBuffer);
+  static final _$getCommentByRootId = $grpc.ClientMethod<
+          $0.GetCommentByRootIdRequest, $0.CommentsPageableResponse>(
+      '/zoogle.CommentService/GetCommentByRootId',
+      ($0.GetCommentByRootIdRequest value) => value.writeToBuffer(),
       $0.CommentsPageableResponse.fromBuffer);
 }
 
@@ -107,6 +119,15 @@ abstract class CommentServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetCommentsByPostIdRequest.fromBuffer(value),
         ($0.CommentsPageableResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetCommentByRootIdRequest,
+            $0.CommentsPageableResponse>(
+        'GetCommentByRootId',
+        getCommentByRootId_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetCommentByRootIdRequest.fromBuffer(value),
+        ($0.CommentsPageableResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$1.Empty> createComment_Pre($grpc.ServiceCall $call,
@@ -133,4 +154,13 @@ abstract class CommentServiceBase extends $grpc.Service {
 
   $async.Future<$0.CommentsPageableResponse> getCommentsByPostId(
       $grpc.ServiceCall call, $0.GetCommentsByPostIdRequest request);
+
+  $async.Future<$0.CommentsPageableResponse> getCommentByRootId_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetCommentByRootIdRequest> $request) async {
+    return getCommentByRootId($call, await $request);
+  }
+
+  $async.Future<$0.CommentsPageableResponse> getCommentByRootId(
+      $grpc.ServiceCall call, $0.GetCommentByRootIdRequest request);
 }

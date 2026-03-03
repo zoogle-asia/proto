@@ -193,7 +193,14 @@ final $typed_data.Uint8List getPostPageableRequestDescriptor =
 const GetPostPageableResponse$json = {
   '1': 'GetPostPageableResponse',
   '2': [
-    {'1': 'posts', '3': 1, '4': 3, '5': 11, '6': '.zoogle.Post', '10': 'posts'},
+    {
+      '1': 'posts',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.zoogle.PostDetail',
+      '10': 'posts'
+    },
     {'1': 'page', '3': 2, '4': 1, '5': 5, '10': 'page'},
     {'1': 'page_size', '3': 3, '4': 1, '5': 5, '10': 'pageSize'},
     {'1': 'total', '3': 4, '4': 1, '5': 5, '10': 'total'},
@@ -202,9 +209,9 @@ const GetPostPageableResponse$json = {
 
 /// Descriptor for `GetPostPageableResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getPostPageableResponseDescriptor = $convert.base64Decode(
-    'ChdHZXRQb3N0UGFnZWFibGVSZXNwb25zZRIiCgVwb3N0cxgBIAMoCzIMLnpvb2dsZS5Qb3N0Ug'
-    'Vwb3N0cxISCgRwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFnZVNpemUS'
-    'FAoFdG90YWwYBCABKAVSBXRvdGFs');
+    'ChdHZXRQb3N0UGFnZWFibGVSZXNwb25zZRIoCgVwb3N0cxgBIAMoCzISLnpvb2dsZS5Qb3N0RG'
+    'V0YWlsUgVwb3N0cxISCgRwYWdlGAIgASgFUgRwYWdlEhsKCXBhZ2Vfc2l6ZRgDIAEoBVIIcGFn'
+    'ZVNpemUSFAoFdG90YWwYBCABKAVSBXRvdGFs');
 
 @$core.Deprecated('Use getPostByUserIdRequestDescriptor instead')
 const GetPostByUserIdRequest$json = {

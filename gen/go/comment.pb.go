@@ -346,6 +346,58 @@ func (x *CommentsPageableResponse) GetTotal() int64 {
 	return 0
 }
 
+type GetCommentByRootIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RootId        int64                  `protobuf:"varint,1,opt,name=root_id,json=rootId,proto3" json:"root_id,omitempty"`
+	Pageable      *Pageable              `protobuf:"bytes,2,opt,name=pageable,proto3" json:"pageable,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCommentByRootIdRequest) Reset() {
+	*x = GetCommentByRootIdRequest{}
+	mi := &file_comment_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCommentByRootIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCommentByRootIdRequest) ProtoMessage() {}
+
+func (x *GetCommentByRootIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_comment_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCommentByRootIdRequest.ProtoReflect.Descriptor instead.
+func (*GetCommentByRootIdRequest) Descriptor() ([]byte, []int) {
+	return file_comment_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetCommentByRootIdRequest) GetRootId() int64 {
+	if x != nil {
+		return x.RootId
+	}
+	return 0
+}
+
+func (x *GetCommentByRootIdRequest) GetPageable() *Pageable {
+	if x != nil {
+		return x.Pageable
+	}
+	return nil
+}
+
 var File_comment_proto protoreflect.FileDescriptor
 
 const file_comment_proto_rawDesc = "" +
@@ -378,11 +430,15 @@ const file_comment_proto_rawDesc = "" +
 	"\bpageable\x18\x02 \x01(\v2\x15.zoogle.base.PageableR\bpageable\"]\n" +
 	"\x18CommentsPageableResponse\x12+\n" +
 	"\bcomments\x18\x01 \x03(\v2\x0f.zoogle.CommentR\bcomments\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total2\xf3\x01\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total\"g\n" +
+	"\x19GetCommentByRootIdRequest\x12\x17\n" +
+	"\aroot_id\x18\x01 \x01(\x03R\x06rootId\x121\n" +
+	"\bpageable\x18\x02 \x01(\v2\x15.zoogle.base.PageableR\bpageable2\xce\x02\n" +
 	"\x0eCommentService\x12A\n" +
 	"\rCreateComment\x12\x1c.zoogle.CreateCommentRequest\x1a\x12.zoogle.base.Empty\x12A\n" +
 	"\rDeleteComment\x12\x1c.zoogle.DeleteCommentRequest\x1a\x12.zoogle.base.Empty\x12[\n" +
-	"\x13GetCommentsByPostId\x12\".zoogle.GetCommentsByPostIdRequest\x1a .zoogle.CommentsPageableResponseB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
+	"\x13GetCommentsByPostId\x12\".zoogle.GetCommentsByPostIdRequest\x1a .zoogle.CommentsPageableResponse\x12Y\n" +
+	"\x12GetCommentByRootId\x12!.zoogle.GetCommentByRootIdRequest\x1a .zoogle.CommentsPageableResponseB!Z\x1fasia.zoogle/zoogle-server/protob\x06proto3"
 
 var (
 	file_comment_proto_rawDescOnce sync.Once
@@ -396,33 +452,37 @@ func file_comment_proto_rawDescGZIP() []byte {
 	return file_comment_proto_rawDescData
 }
 
-var file_comment_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_comment_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_comment_proto_goTypes = []any{
 	(*Comment)(nil),                    // 0: zoogle.Comment
 	(*CreateCommentRequest)(nil),       // 1: zoogle.CreateCommentRequest
 	(*DeleteCommentRequest)(nil),       // 2: zoogle.DeleteCommentRequest
 	(*GetCommentsByPostIdRequest)(nil), // 3: zoogle.GetCommentsByPostIdRequest
 	(*CommentsPageableResponse)(nil),   // 4: zoogle.CommentsPageableResponse
-	(*User)(nil),                       // 5: zoogle.User
-	(*Pageable)(nil),                   // 6: zoogle.base.Pageable
-	(*Empty)(nil),                      // 7: zoogle.base.Empty
+	(*GetCommentByRootIdRequest)(nil),  // 5: zoogle.GetCommentByRootIdRequest
+	(*User)(nil),                       // 6: zoogle.User
+	(*Pageable)(nil),                   // 7: zoogle.base.Pageable
+	(*Empty)(nil),                      // 8: zoogle.base.Empty
 }
 var file_comment_proto_depIdxs = []int32{
 	0, // 0: zoogle.Comment.replies:type_name -> zoogle.Comment
-	5, // 1: zoogle.Comment.author:type_name -> zoogle.User
-	6, // 2: zoogle.GetCommentsByPostIdRequest.pageable:type_name -> zoogle.base.Pageable
+	6, // 1: zoogle.Comment.author:type_name -> zoogle.User
+	7, // 2: zoogle.GetCommentsByPostIdRequest.pageable:type_name -> zoogle.base.Pageable
 	0, // 3: zoogle.CommentsPageableResponse.comments:type_name -> zoogle.Comment
-	1, // 4: zoogle.CommentService.CreateComment:input_type -> zoogle.CreateCommentRequest
-	2, // 5: zoogle.CommentService.DeleteComment:input_type -> zoogle.DeleteCommentRequest
-	3, // 6: zoogle.CommentService.GetCommentsByPostId:input_type -> zoogle.GetCommentsByPostIdRequest
-	7, // 7: zoogle.CommentService.CreateComment:output_type -> zoogle.base.Empty
-	7, // 8: zoogle.CommentService.DeleteComment:output_type -> zoogle.base.Empty
-	4, // 9: zoogle.CommentService.GetCommentsByPostId:output_type -> zoogle.CommentsPageableResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7, // 4: zoogle.GetCommentByRootIdRequest.pageable:type_name -> zoogle.base.Pageable
+	1, // 5: zoogle.CommentService.CreateComment:input_type -> zoogle.CreateCommentRequest
+	2, // 6: zoogle.CommentService.DeleteComment:input_type -> zoogle.DeleteCommentRequest
+	3, // 7: zoogle.CommentService.GetCommentsByPostId:input_type -> zoogle.GetCommentsByPostIdRequest
+	5, // 8: zoogle.CommentService.GetCommentByRootId:input_type -> zoogle.GetCommentByRootIdRequest
+	8, // 9: zoogle.CommentService.CreateComment:output_type -> zoogle.base.Empty
+	8, // 10: zoogle.CommentService.DeleteComment:output_type -> zoogle.base.Empty
+	4, // 11: zoogle.CommentService.GetCommentsByPostId:output_type -> zoogle.CommentsPageableResponse
+	4, // 12: zoogle.CommentService.GetCommentByRootId:output_type -> zoogle.CommentsPageableResponse
+	9, // [9:13] is the sub-list for method output_type
+	5, // [5:9] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_comment_proto_init() }
@@ -438,7 +498,7 @@ func file_comment_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_comment_proto_rawDesc), len(file_comment_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -125,3 +125,25 @@ final $typed_data.Uint8List commentsPageableResponseDescriptor =
     $convert.base64Decode(
         'ChhDb21tZW50c1BhZ2VhYmxlUmVzcG9uc2USKwoIY29tbWVudHMYASADKAsyDy56b29nbGUuQ2'
         '9tbWVudFIIY29tbWVudHMSFAoFdG90YWwYAiABKANSBXRvdGFs');
+
+@$core.Deprecated('Use getCommentByRootIdRequestDescriptor instead')
+const GetCommentByRootIdRequest$json = {
+  '1': 'GetCommentByRootIdRequest',
+  '2': [
+    {'1': 'root_id', '3': 1, '4': 1, '5': 3, '10': 'rootId'},
+    {
+      '1': 'pageable',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.zoogle.base.Pageable',
+      '10': 'pageable'
+    },
+  ],
+};
+
+/// Descriptor for `GetCommentByRootIdRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getCommentByRootIdRequestDescriptor =
+    $convert.base64Decode(
+        'ChlHZXRDb21tZW50QnlSb290SWRSZXF1ZXN0EhcKB3Jvb3RfaWQYASABKANSBnJvb3RJZBIxCg'
+        'hwYWdlYWJsZRgCIAEoCzIVLnpvb2dsZS5iYXNlLlBhZ2VhYmxlUghwYWdlYWJsZQ==');
