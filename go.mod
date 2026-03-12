@@ -1,4 +1,4 @@
-module github.com/renz7/zoogle/proto
+module github.com/zoogle-asia/proto
 
 go 1.25
 

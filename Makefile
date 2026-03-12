@@ -1,5 +1,6 @@
-.PHONY: proto gen_proto_go gen_proto_dart clean
+.PHONY: all
 
+GOMOD := github.com/zoogle-asia/proto
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 PROTO_ROOT  := $(dir $(abspath $(THIS_FILE)))
 
@@ -34,7 +35,7 @@ go: clean $(PROTO_FILES)
 		echo "Generated $$f -> $(PB_GO)"; \
 	done
 	@echo "Generating Go mod files..."
-	go mod init github.com/renz7/zoogle/proto && go mod tidy -go=1.25 -compat=1.25
+	go mod init $(GOMOD) && go mod tidy -go=1.25 -compat=1.25
 
 # -----------------------
 # 生成 Dart pb 文件
