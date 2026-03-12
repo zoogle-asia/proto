@@ -10,6 +10,7 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
@@ -139,6 +140,17 @@ class SendSmsResponse extends $pb.GeneratedMessage {
   $core.bool hasSuccess() => $_has(0);
   @$pb.TagNumber(1)
   void clearSuccess() => $_clearField(1);
+}
+
+class SmsServiceApi {
+  final $pb.RpcClient _client;
+
+  SmsServiceApi(this._client);
+
+  $async.Future<SendSmsResponse> sendSms(
+          $pb.ClientContext? ctx, SendSmsRequest request) =>
+      _client.invoke<SendSmsResponse>(
+          ctx, 'SmsService', 'SendSms', request, SendSmsResponse());
 }
 
 const $core.bool _omitFieldNames =

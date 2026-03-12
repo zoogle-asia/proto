@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package chat.v1;
+
+option go_package = "github.com/ren/zoogle-im/proto/gen;chatv1";
+
+service ChatService {
+  rpc ChatStream(stream ChatClientMessage) returns (stream ChatServerEvent);
+  rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse);
+}
+
+message ChatClientMessage {
+  oneof payload {
+    Auth         auth = 1;
+    SendMessage  send_message = 2;
+    AckMessage   ack_message = 3;
+    Heartbeat    heartbeat = 4;
+  }
+}
+
+message ChatServerEvent {
+  oneof payload {
+    NewMessage      new_message = 1;
+    MessageAck      message_ack = 2;
+    PresenceUpdate  presence_update = 3;
+    SystemEvent     system_event = 4;
+  }
+}
+
+message Auth {
+  string token = 1;
+}
+
+message Heartbeat {}
+
+
+
+enum  MessageType{
+  Text = 0;
+  Image = 1;
+  Video = 2;
+}
+message SendMessage {
+  string client_msg_id = 1;
+  string conversation_id = 2;
+  string content = 3;
+  MessageType type = 4;
+}
+
+message AckMessage {
+  string message_id = 1;
+  string status = 2; // delivered, read
+}
+
+message NewMessage {
+  string id = 1;
+  string client_msg_id = 2;
+  string conversation_id = 3;
+  string sender_id = 4;
+  string content = 5;
+  MessageType type = 6;
+  int64  created_at = 7;
+}
+
+message MessageAck {
+  string message_id = 1;
+  string status = 2;
+}
+
+message PresenceUpdate {
+  string user_id = 1;
+  string status = 2; // online, offline
+}
+
+message SystemEvent {
+  string code = 1;
+  string message = 2;
+}
+
+message ListConversationsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+message ListConversationsResponse {
+  repeated Conversation conversations = 1;
+  string next_page_token = 2;
+}
+
+message Conversation {
+  string id = 1;
+  string title = 2;
+  bool   is_group = 3;
+  int64  updated_at = 4;
+  int32  unread_count = 5;
+  repeated  Member members = 6;
+}
+
+message Member {
+  string user_id = 1;
+  string name = 2;
+  string avatar_url = 3;
+}

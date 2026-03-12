@@ -1,17 +1,57 @@
 .PHONY: proto gen_proto_go gen_proto_dart clean
 
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
-THIS_DIR  := $(dir $(abspath $(THIS_FILE)))
+PROTO_ROOT  := $(dir $(abspath $(THIS_FILE)))
 
-proto: clean gen_proto_dart gen_proto_go
+# Go 输出目录
+PB_GO := pb_go
+# Dart 输出目录
+PB_DART := pb_dart
 
-gen_proto_go:
-	mkdir -p $(THIS_DIR)/gen/go && \
-	protoc --go_out=$(THIS_DIR)/gen/go --go-grpc_out=$(THIS_DIR)/gen/go --go_opt=paths=source_relative --go-grpc_opt=paths=source_relative --proto_path $(THIS_DIR) $(THIS_DIR)/*.proto
+# protoc 命令
+PROTOC := protoc
 
-gen_proto_dart:
-	mkdir -p $(THIS_DIR)/gen/dart && \
-	protoc --dart_out=grpc:$(THIS_DIR)/gen/dart --proto_path $(THIS_DIR) $(THIS_DIR)/*.proto
+# 查找所有 proto 文件
+PROTO_FILES := $(shell find $(PROTO_ROOT) -name "*.proto")
 
+.PHONY: all go dart clean
+
+# 默认全部生成
+all: go dart
+
+# -----------------------
+# 生成 Go pb 文件
+# -----------------------
+go: clean $(PROTO_FILES)
+	mkdir -p $(PROTO_ROOT)/$(PB_GO);
+	@echo "Generating Go pb files..."
+	@for f in $(PROTO_FILES); do \
+		DIR=$$(dirname $$f); \
+		$(PROTOC) -I $(PROTO_ROOT) \
+			--go_out=$(PB_GO) --go_opt=paths=source_relative \
+			--go-grpc_out=$(PB_GO) --go-grpc_opt=paths=source_relative \
+			$$f; \
+		echo "Generated $$f -> $(PB_GO)"; \
+	done
+	@echo "Generating Go mod files..."
+	go mod init github.com/renz7/zoogle/proto && go mod tidy -go=1.25 -compat=1.25
+
+# -----------------------
+# 生成 Dart pb 文件
+# -----------------------
+dart: $(PROTO_FILES)
+	@echo "Generating Dart pb files..."
+	@for f in $(PROTO_FILES); do \
+		DIR=$$(dirname $$f); \
+		mkdir -p $(PROTO_ROOT)/$(PB_DART); \
+		$(PROTOC) -I $(PROTO_ROOT) \
+			--dart_out=$(PB_DART)/$$REL_DIR \
+			$$f; \
+		echo "Generated $$f -> $(PB_DART)"; \
+	done
+
+# -----------------------
+# 清理生成文件
+# -----------------------
 clean:
-	rm -rf $(THIS_DIR)/gen
+	rm -rf $(PB_GO) $(PB_DART) $(PROTO_ROOT)/go.mod $(PROTO_ROOT)/go.sum

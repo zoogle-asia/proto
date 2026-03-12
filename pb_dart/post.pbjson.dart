@@ -15,6 +15,8 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+import 'user.pbjson.dart' as $0;
+
 @$core.Deprecated('Use postDescriptor instead')
 const Post$json = {
   '1': 'Post',
@@ -268,3 +270,85 @@ const LikePostResponse$json = {
 /// Descriptor for `LikePostResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List likePostResponseDescriptor =
     $convert.base64Decode('ChBMaWtlUG9zdFJlc3BvbnNl');
+
+const $core.Map<$core.String, $core.dynamic> PostServiceBase$json = {
+  '1': 'PostService',
+  '2': [
+    {
+      '1': 'CreatePost',
+      '2': '.zoogle.CreatePostRequest',
+      '3': '.zoogle.CreatePostResponse'
+    },
+    {
+      '1': 'GetPost',
+      '2': '.zoogle.GetPostRequest',
+      '3': '.zoogle.GetPostResponse'
+    },
+    {
+      '1': 'UpdatePost',
+      '2': '.zoogle.UpdatePostRequest',
+      '3': '.zoogle.UpdatePostResponse'
+    },
+    {
+      '1': 'DeletePost',
+      '2': '.zoogle.DeletePostRequest',
+      '3': '.zoogle.DeletePostResponse'
+    },
+    {
+      '1': 'GetPostPageable',
+      '2': '.zoogle.GetPostPageableRequest',
+      '3': '.zoogle.GetPostPageableResponse'
+    },
+    {
+      '1': 'GetPostByUserId',
+      '2': '.zoogle.GetPostByUserIdRequest',
+      '3': '.zoogle.GetPostByUserIdResponse'
+    },
+    {
+      '1': 'LikePost',
+      '2': '.zoogle.LikePostRequest',
+      '3': '.zoogle.LikePostResponse'
+    },
+    {
+      '1': 'GetPostDetail',
+      '2': '.zoogle.GetPostRequest',
+      '3': '.zoogle.PostDetail'
+    },
+  ],
+};
+
+@$core.Deprecated('Use postServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
+    PostServiceBase$messageJson = {
+  '.zoogle.CreatePostRequest': CreatePostRequest$json,
+  '.zoogle.CreatePostResponse': CreatePostResponse$json,
+  '.zoogle.Post': Post$json,
+  '.zoogle.GetPostRequest': GetPostRequest$json,
+  '.zoogle.GetPostResponse': GetPostResponse$json,
+  '.zoogle.UpdatePostRequest': UpdatePostRequest$json,
+  '.zoogle.UpdatePostResponse': UpdatePostResponse$json,
+  '.zoogle.DeletePostRequest': DeletePostRequest$json,
+  '.zoogle.DeletePostResponse': DeletePostResponse$json,
+  '.zoogle.GetPostPageableRequest': GetPostPageableRequest$json,
+  '.zoogle.GetPostPageableResponse': GetPostPageableResponse$json,
+  '.zoogle.PostDetail': PostDetail$json,
+  '.zoogle.User': $0.User$json,
+  '.zoogle.GetPostByUserIdRequest': GetPostByUserIdRequest$json,
+  '.zoogle.GetPostByUserIdResponse': GetPostByUserIdResponse$json,
+  '.zoogle.LikePostRequest': LikePostRequest$json,
+  '.zoogle.LikePostResponse': LikePostResponse$json,
+};
+
+/// Descriptor for `PostService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List postServiceDescriptor = $convert.base64Decode(
+    'CgtQb3N0U2VydmljZRJDCgpDcmVhdGVQb3N0Ehkuem9vZ2xlLkNyZWF0ZVBvc3RSZXF1ZXN0Gh'
+    'ouem9vZ2xlLkNyZWF0ZVBvc3RSZXNwb25zZRI6CgdHZXRQb3N0EhYuem9vZ2xlLkdldFBvc3RS'
+    'ZXF1ZXN0Ghcuem9vZ2xlLkdldFBvc3RSZXNwb25zZRJDCgpVcGRhdGVQb3N0Ehkuem9vZ2xlLl'
+    'VwZGF0ZVBvc3RSZXF1ZXN0Ghouem9vZ2xlLlVwZGF0ZVBvc3RSZXNwb25zZRJDCgpEZWxldGVQ'
+    'b3N0Ehkuem9vZ2xlLkRlbGV0ZVBvc3RSZXF1ZXN0Ghouem9vZ2xlLkRlbGV0ZVBvc3RSZXNwb2'
+    '5zZRJSCg9HZXRQb3N0UGFnZWFibGUSHi56b29nbGUuR2V0UG9zdFBhZ2VhYmxlUmVxdWVzdBof'
+    'Lnpvb2dsZS5HZXRQb3N0UGFnZWFibGVSZXNwb25zZRJSCg9HZXRQb3N0QnlVc2VySWQSHi56b2'
+    '9nbGUuR2V0UG9zdEJ5VXNlcklkUmVxdWVzdBofLnpvb2dsZS5HZXRQb3N0QnlVc2VySWRSZXNw'
+    'b25zZRI9CghMaWtlUG9zdBIXLnpvb2dsZS5MaWtlUG9zdFJlcXVlc3QaGC56b29nbGUuTGlrZV'
+    'Bvc3RSZXNwb25zZRI7Cg1HZXRQb3N0RGV0YWlsEhYuem9vZ2xlLkdldFBvc3RSZXF1ZXN0GhIu'
+    'em9vZ2xlLlBvc3REZXRhaWw=');

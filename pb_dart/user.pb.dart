@@ -10,11 +10,13 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
+import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'base.pb.dart' as $0;
 import 'user.pbenum.dart';
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
@@ -558,6 +560,28 @@ class RegisterRequest extends $pb.GeneratedMessage {
   $core.bool hasMethod() => $_has(5);
   @$pb.TagNumber(6)
   void clearMethod() => $_clearField(6);
+}
+
+/// service
+class UserServiceApi {
+  final $pb.RpcClient _client;
+
+  UserServiceApi(this._client);
+
+  $async.Future<LoginResponse> login(
+          $pb.ClientContext? ctx, LoginRequest request) =>
+      _client.invoke<LoginResponse>(
+          ctx, 'UserService', 'Login', request, LoginResponse());
+  $async.Future<User> register(
+          $pb.ClientContext? ctx, RegisterRequest request) =>
+      _client.invoke<User>(ctx, 'UserService', 'Register', request, User());
+  $async.Future<User> getUser($pb.ClientContext? ctx, GetUserRequest request) =>
+      _client.invoke<User>(ctx, 'UserService', 'GetUser', request, User());
+  $async.Future<User> updateUser(
+          $pb.ClientContext? ctx, UpdateUserRequest request) =>
+      _client.invoke<User>(ctx, 'UserService', 'UpdateUser', request, User());
+  $async.Future<User> self($pb.ClientContext? ctx, $0.Empty request) =>
+      _client.invoke<User>(ctx, 'UserService', 'Self', request, User());
 }
 
 const $core.bool _omitFieldNames =

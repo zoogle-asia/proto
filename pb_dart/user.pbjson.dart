@@ -15,6 +15,8 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+import 'base.pbjson.dart' as $0;
+
 @$core.Deprecated('Use loginMethodDescriptor instead')
 const LoginMethod$json = {
   '1': 'LoginMethod',
@@ -197,3 +199,34 @@ final $typed_data.Uint8List registerRequestDescriptor = $convert.base64Decode(
     'c0NvZGWIAQESHwoIcGFzc3dvcmQYBSABKAlIAlIIcGFzc3dvcmSIAQESKwoGbWV0aG9kGAYgAS'
     'gOMhMuem9vZ2xlLkxvZ2luTWV0aG9kUgZtZXRob2RCCQoHX2F2YXRhckIKCghfc21zQ29kZUIL'
     'CglfcGFzc3dvcmQ=');
+
+const $core.Map<$core.String, $core.dynamic> UserServiceBase$json = {
+  '1': 'UserService',
+  '2': [
+    {'1': 'Login', '2': '.zoogle.LoginRequest', '3': '.zoogle.LoginResponse'},
+    {'1': 'Register', '2': '.zoogle.RegisterRequest', '3': '.zoogle.User'},
+    {'1': 'GetUser', '2': '.zoogle.GetUserRequest', '3': '.zoogle.User'},
+    {'1': 'UpdateUser', '2': '.zoogle.UpdateUserRequest', '3': '.zoogle.User'},
+    {'1': 'Self', '2': '.zoogle.base.Empty', '3': '.zoogle.User'},
+  ],
+};
+
+@$core.Deprecated('Use userServiceDescriptor instead')
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
+    UserServiceBase$messageJson = {
+  '.zoogle.LoginRequest': LoginRequest$json,
+  '.zoogle.LoginResponse': LoginResponse$json,
+  '.zoogle.User': User$json,
+  '.zoogle.RegisterRequest': RegisterRequest$json,
+  '.zoogle.GetUserRequest': GetUserRequest$json,
+  '.zoogle.UpdateUserRequest': UpdateUserRequest$json,
+  '.zoogle.base.Empty': $0.Empty$json,
+};
+
+/// Descriptor for `UserService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
+final $typed_data.Uint8List userServiceDescriptor = $convert.base64Decode(
+    'CgtVc2VyU2VydmljZRI0CgVMb2dpbhIULnpvb2dsZS5Mb2dpblJlcXVlc3QaFS56b29nbGUuTG'
+    '9naW5SZXNwb25zZRIxCghSZWdpc3RlchIXLnpvb2dsZS5SZWdpc3RlclJlcXVlc3QaDC56b29n'
+    'bGUuVXNlchIvCgdHZXRVc2VyEhYuem9vZ2xlLkdldFVzZXJSZXF1ZXN0Ggwuem9vZ2xlLlVzZX'
+    'ISNQoKVXBkYXRlVXNlchIZLnpvb2dsZS5VcGRhdGVVc2VyUmVxdWVzdBoMLnpvb2dsZS5Vc2Vy'
+    'EigKBFNlbGYSEi56b29nbGUuYmFzZS5FbXB0eRoMLnpvb2dsZS5Vc2Vy');
