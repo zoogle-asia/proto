@@ -1,5 +1,10 @@
 name: version
 
+permissions:
+  contents: write       # repo 文件操作
+  issues: write         # issue/comment 权限
+  pull-requests: write  # PR 权限
+
 on:
   push:
     branches:
