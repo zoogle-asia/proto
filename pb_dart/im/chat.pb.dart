@@ -376,7 +376,7 @@ class Heartbeat extends $pb.GeneratedMessage {
 class SendMessage extends $pb.GeneratedMessage {
   factory SendMessage({
     $core.String? clientMsgId,
-    $core.String? conversationId,
+    $fixnum.Int64? conversationId,
     $core.String? content,
     MessageType? type,
   }) {
@@ -402,7 +402,7 @@ class SendMessage extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'clientMsgId')
-    ..aOS(2, _omitFieldNames ? '' : 'conversationId')
+    ..aInt64(2, _omitFieldNames ? '' : 'conversationId')
     ..aOS(3, _omitFieldNames ? '' : 'content')
     ..aE<MessageType>(4, _omitFieldNames ? '' : 'type',
         enumValues: MessageType.values)
@@ -437,9 +437,9 @@ class SendMessage extends $pb.GeneratedMessage {
   void clearClientMsgId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get conversationId => $_getSZ(1);
+  $fixnum.Int64 get conversationId => $_getI64(1);
   @$pb.TagNumber(2)
-  set conversationId($core.String value) => $_setString(1, value);
+  set conversationId($fixnum.Int64 value) => $_setInt64(1, value);
   @$pb.TagNumber(2)
   $core.bool hasConversationId() => $_has(1);
   @$pb.TagNumber(2)
@@ -531,10 +531,10 @@ class AckMessage extends $pb.GeneratedMessage {
 
 class NewMessage extends $pb.GeneratedMessage {
   factory NewMessage({
-    $core.String? id,
+    $fixnum.Int64? id,
     $core.String? clientMsgId,
-    $core.String? conversationId,
-    $core.String? senderId,
+    $fixnum.Int64? conversationId,
+    $fixnum.Int64? senderId,
     $core.String? content,
     MessageType? type,
     $fixnum.Int64? createdAt,
@@ -563,10 +563,10 @@ class NewMessage extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'NewMessage',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aInt64(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'clientMsgId')
-    ..aOS(3, _omitFieldNames ? '' : 'conversationId')
-    ..aOS(4, _omitFieldNames ? '' : 'senderId')
+    ..aInt64(3, _omitFieldNames ? '' : 'conversationId')
+    ..aInt64(4, _omitFieldNames ? '' : 'senderId')
     ..aOS(5, _omitFieldNames ? '' : 'content')
     ..aE<MessageType>(6, _omitFieldNames ? '' : 'type',
         enumValues: MessageType.values)
@@ -592,9 +592,9 @@ class NewMessage extends $pb.GeneratedMessage {
   static NewMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  $fixnum.Int64 get id => $_getI64(0);
   @$pb.TagNumber(1)
-  set id($core.String value) => $_setString(0, value);
+  set id($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -610,18 +610,18 @@ class NewMessage extends $pb.GeneratedMessage {
   void clearClientMsgId() => $_clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get conversationId => $_getSZ(2);
+  $fixnum.Int64 get conversationId => $_getI64(2);
   @$pb.TagNumber(3)
-  set conversationId($core.String value) => $_setString(2, value);
+  set conversationId($fixnum.Int64 value) => $_setInt64(2, value);
   @$pb.TagNumber(3)
   $core.bool hasConversationId() => $_has(2);
   @$pb.TagNumber(3)
   void clearConversationId() => $_clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get senderId => $_getSZ(3);
+  $fixnum.Int64 get senderId => $_getI64(3);
   @$pb.TagNumber(4)
-  set senderId($core.String value) => $_setString(3, value);
+  set senderId($fixnum.Int64 value) => $_setInt64(3, value);
   @$pb.TagNumber(4)
   $core.bool hasSenderId() => $_has(3);
   @$pb.TagNumber(4)
@@ -657,7 +657,7 @@ class NewMessage extends $pb.GeneratedMessage {
 
 class MessageAck extends $pb.GeneratedMessage {
   factory MessageAck({
-    $core.String? messageId,
+    $fixnum.Int64? messageId,
     $core.String? status,
   }) {
     final result = create();
@@ -679,7 +679,7 @@ class MessageAck extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'MessageAck',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'messageId')
+    ..aInt64(1, _omitFieldNames ? '' : 'messageId')
     ..aOS(2, _omitFieldNames ? '' : 'status')
     ..hasRequiredFields = false;
 
@@ -702,9 +702,9 @@ class MessageAck extends $pb.GeneratedMessage {
   static MessageAck? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get messageId => $_getSZ(0);
+  $fixnum.Int64 get messageId => $_getI64(0);
   @$pb.TagNumber(1)
-  set messageId($core.String value) => $_setString(0, value);
+  set messageId($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasMessageId() => $_has(0);
   @$pb.TagNumber(1)
@@ -722,7 +722,7 @@ class MessageAck extends $pb.GeneratedMessage {
 
 class PresenceUpdate extends $pb.GeneratedMessage {
   factory PresenceUpdate({
-    $core.String? userId,
+    $fixnum.Int64? userId,
     $core.String? status,
   }) {
     final result = create();
@@ -744,7 +744,7 @@ class PresenceUpdate extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'PresenceUpdate',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'userId')
+    ..aInt64(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'status')
     ..hasRequiredFields = false;
 
@@ -768,9 +768,9 @@ class PresenceUpdate extends $pb.GeneratedMessage {
   static PresenceUpdate? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get userId => $_getSZ(0);
+  $fixnum.Int64 get userId => $_getI64(0);
   @$pb.TagNumber(1)
-  set userId($core.String value) => $_setString(0, value);
+  set userId($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
@@ -983,11 +983,10 @@ class ListConversationsResponse extends $pb.GeneratedMessage {
 
 class Conversation extends $pb.GeneratedMessage {
   factory Conversation({
-    $core.String? id,
+    $fixnum.Int64? id,
     $core.String? title,
     $core.bool? isGroup,
     $fixnum.Int64? updatedAt,
-    $core.int? unreadCount,
     $core.Iterable<Member>? members,
   }) {
     final result = create();
@@ -995,7 +994,6 @@ class Conversation extends $pb.GeneratedMessage {
     if (title != null) result.title = title;
     if (isGroup != null) result.isGroup = isGroup;
     if (updatedAt != null) result.updatedAt = updatedAt;
-    if (unreadCount != null) result.unreadCount = unreadCount;
     if (members != null) result.members.addAll(members);
     return result;
   }
@@ -1013,11 +1011,10 @@ class Conversation extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'Conversation',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..aInt64(1, _omitFieldNames ? '' : 'id')
     ..aOS(2, _omitFieldNames ? '' : 'title')
     ..aOB(3, _omitFieldNames ? '' : 'isGroup')
     ..aInt64(4, _omitFieldNames ? '' : 'updatedAt')
-    ..aI(5, _omitFieldNames ? '' : 'unreadCount')
     ..pPM<Member>(6, _omitFieldNames ? '' : 'members',
         subBuilder: Member.create)
     ..hasRequiredFields = false;
@@ -1042,9 +1039,9 @@ class Conversation extends $pb.GeneratedMessage {
   static Conversation? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get id => $_getSZ(0);
+  $fixnum.Int64 get id => $_getI64(0);
   @$pb.TagNumber(1)
-  set id($core.String value) => $_setString(0, value);
+  set id($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -1077,22 +1074,13 @@ class Conversation extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   void clearUpdatedAt() => $_clearField(4);
 
-  @$pb.TagNumber(5)
-  $core.int get unreadCount => $_getIZ(4);
-  @$pb.TagNumber(5)
-  set unreadCount($core.int value) => $_setSignedInt32(4, value);
-  @$pb.TagNumber(5)
-  $core.bool hasUnreadCount() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearUnreadCount() => $_clearField(5);
-
   @$pb.TagNumber(6)
-  $pb.PbList<Member> get members => $_getList(5);
+  $pb.PbList<Member> get members => $_getList(4);
 }
 
 class Member extends $pb.GeneratedMessage {
   factory Member({
-    $core.String? userId,
+    $fixnum.Int64? userId,
     $core.String? name,
     $core.String? avatarUrl,
   }) {
@@ -1116,7 +1104,7 @@ class Member extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'Member',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'userId')
+    ..aInt64(1, _omitFieldNames ? '' : 'userId')
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..aOS(3, _omitFieldNames ? '' : 'avatarUrl')
     ..hasRequiredFields = false;
@@ -1140,9 +1128,9 @@ class Member extends $pb.GeneratedMessage {
   static Member? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get userId => $_getSZ(0);
+  $fixnum.Int64 get userId => $_getI64(0);
   @$pb.TagNumber(1)
-  set userId($core.String value) => $_setString(0, value);
+  set userId($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)

@@ -163,7 +163,7 @@ const SendMessage$json = {
   '1': 'SendMessage',
   '2': [
     {'1': 'client_msg_id', '3': 1, '4': 1, '5': 9, '10': 'clientMsgId'},
-    {'1': 'conversation_id', '3': 2, '4': 1, '5': 9, '10': 'conversationId'},
+    {'1': 'conversation_id', '3': 2, '4': 1, '5': 3, '10': 'conversationId'},
     {'1': 'content', '3': 3, '4': 1, '5': 9, '10': 'content'},
     {
       '1': 'type',
@@ -179,7 +179,7 @@ const SendMessage$json = {
 /// Descriptor for `SendMessage`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sendMessageDescriptor = $convert.base64Decode(
     'CgtTZW5kTWVzc2FnZRIiCg1jbGllbnRfbXNnX2lkGAEgASgJUgtjbGllbnRNc2dJZBInCg9jb2'
-    '52ZXJzYXRpb25faWQYAiABKAlSDmNvbnZlcnNhdGlvbklkEhgKB2NvbnRlbnQYAyABKAlSB2Nv'
+    '52ZXJzYXRpb25faWQYAiABKANSDmNvbnZlcnNhdGlvbklkEhgKB2NvbnRlbnQYAyABKAlSB2Nv'
     'bnRlbnQSKAoEdHlwZRgEIAEoDjIULmNoYXQudjEuTWVzc2FnZVR5cGVSBHR5cGU=');
 
 @$core.Deprecated('Use ackMessageDescriptor instead')
@@ -200,10 +200,10 @@ final $typed_data.Uint8List ackMessageDescriptor = $convert.base64Decode(
 const NewMessage$json = {
   '1': 'NewMessage',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
     {'1': 'client_msg_id', '3': 2, '4': 1, '5': 9, '10': 'clientMsgId'},
-    {'1': 'conversation_id', '3': 3, '4': 1, '5': 9, '10': 'conversationId'},
-    {'1': 'sender_id', '3': 4, '4': 1, '5': 9, '10': 'senderId'},
+    {'1': 'conversation_id', '3': 3, '4': 1, '5': 3, '10': 'conversationId'},
+    {'1': 'sender_id', '3': 4, '4': 1, '5': 3, '10': 'senderId'},
     {'1': 'content', '3': 5, '4': 1, '5': 9, '10': 'content'},
     {
       '1': 'type',
@@ -219,9 +219,9 @@ const NewMessage$json = {
 
 /// Descriptor for `NewMessage`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List newMessageDescriptor = $convert.base64Decode(
-    'CgpOZXdNZXNzYWdlEg4KAmlkGAEgASgJUgJpZBIiCg1jbGllbnRfbXNnX2lkGAIgASgJUgtjbG'
-    'llbnRNc2dJZBInCg9jb252ZXJzYXRpb25faWQYAyABKAlSDmNvbnZlcnNhdGlvbklkEhsKCXNl'
-    'bmRlcl9pZBgEIAEoCVIIc2VuZGVySWQSGAoHY29udGVudBgFIAEoCVIHY29udGVudBIoCgR0eX'
+    'CgpOZXdNZXNzYWdlEg4KAmlkGAEgASgDUgJpZBIiCg1jbGllbnRfbXNnX2lkGAIgASgJUgtjbG'
+    'llbnRNc2dJZBInCg9jb252ZXJzYXRpb25faWQYAyABKANSDmNvbnZlcnNhdGlvbklkEhsKCXNl'
+    'bmRlcl9pZBgEIAEoA1IIc2VuZGVySWQSGAoHY29udGVudBgFIAEoCVIHY29udGVudBIoCgR0eX'
     'BlGAYgASgOMhQuY2hhdC52MS5NZXNzYWdlVHlwZVIEdHlwZRIdCgpjcmVhdGVkX2F0GAcgASgD'
     'UgljcmVhdGVkQXQ=');
 
@@ -229,28 +229,28 @@ final $typed_data.Uint8List newMessageDescriptor = $convert.base64Decode(
 const MessageAck$json = {
   '1': 'MessageAck',
   '2': [
-    {'1': 'message_id', '3': 1, '4': 1, '5': 9, '10': 'messageId'},
+    {'1': 'message_id', '3': 1, '4': 1, '5': 3, '10': 'messageId'},
     {'1': 'status', '3': 2, '4': 1, '5': 9, '10': 'status'},
   ],
 };
 
 /// Descriptor for `MessageAck`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List messageAckDescriptor = $convert.base64Decode(
-    'CgpNZXNzYWdlQWNrEh0KCm1lc3NhZ2VfaWQYASABKAlSCW1lc3NhZ2VJZBIWCgZzdGF0dXMYAi'
+    'CgpNZXNzYWdlQWNrEh0KCm1lc3NhZ2VfaWQYASABKANSCW1lc3NhZ2VJZBIWCgZzdGF0dXMYAi'
     'ABKAlSBnN0YXR1cw==');
 
 @$core.Deprecated('Use presenceUpdateDescriptor instead')
 const PresenceUpdate$json = {
   '1': 'PresenceUpdate',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
     {'1': 'status', '3': 2, '4': 1, '5': 9, '10': 'status'},
   ],
 };
 
 /// Descriptor for `PresenceUpdate`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List presenceUpdateDescriptor = $convert.base64Decode(
-    'Cg5QcmVzZW5jZVVwZGF0ZRIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSFgoGc3RhdHVzGAIgAS'
+    'Cg5QcmVzZW5jZVVwZGF0ZRIXCgd1c2VyX2lkGAEgASgDUgZ1c2VySWQSFgoGc3RhdHVzGAIgAS'
     'gJUgZzdGF0dXM=');
 
 @$core.Deprecated('Use systemEventDescriptor instead')
@@ -308,11 +308,10 @@ final $typed_data.Uint8List listConversationsResponseDescriptor = $convert.base6
 const Conversation$json = {
   '1': 'Conversation',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
+    {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
     {'1': 'title', '3': 2, '4': 1, '5': 9, '10': 'title'},
     {'1': 'is_group', '3': 3, '4': 1, '5': 8, '10': 'isGroup'},
     {'1': 'updated_at', '3': 4, '4': 1, '5': 3, '10': 'updatedAt'},
-    {'1': 'unread_count', '3': 5, '4': 1, '5': 5, '10': 'unreadCount'},
     {
       '1': 'members',
       '3': 6,
@@ -326,16 +325,15 @@ const Conversation$json = {
 
 /// Descriptor for `Conversation`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List conversationDescriptor = $convert.base64Decode(
-    'CgxDb252ZXJzYXRpb24SDgoCaWQYASABKAlSAmlkEhQKBXRpdGxlGAIgASgJUgV0aXRsZRIZCg'
+    'CgxDb252ZXJzYXRpb24SDgoCaWQYASABKANSAmlkEhQKBXRpdGxlGAIgASgJUgV0aXRsZRIZCg'
     'hpc19ncm91cBgDIAEoCFIHaXNHcm91cBIdCgp1cGRhdGVkX2F0GAQgASgDUgl1cGRhdGVkQXQS'
-    'IQoMdW5yZWFkX2NvdW50GAUgASgFUgt1bnJlYWRDb3VudBIpCgdtZW1iZXJzGAYgAygLMg8uY2'
-    'hhdC52MS5NZW1iZXJSB21lbWJlcnM=');
+    'KQoHbWVtYmVycxgGIAMoCzIPLmNoYXQudjEuTWVtYmVyUgdtZW1iZXJz');
 
 @$core.Deprecated('Use memberDescriptor instead')
 const Member$json = {
   '1': 'Member',
   '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
     {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
     {'1': 'avatar_url', '3': 3, '4': 1, '5': 9, '10': 'avatarUrl'},
   ],
@@ -343,7 +341,7 @@ const Member$json = {
 
 /// Descriptor for `Member`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List memberDescriptor = $convert.base64Decode(
-    'CgZNZW1iZXISFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEhIKBG5hbWUYAiABKAlSBG5hbWUSHQ'
+    'CgZNZW1iZXISFwoHdXNlcl9pZBgBIAEoA1IGdXNlcklkEhIKBG5hbWUYAiABKAlSBG5hbWUSHQ'
     'oKYXZhdGFyX3VybBgDIAEoCVIJYXZhdGFyVXJs');
 
 const $core.Map<$core.String, $core.dynamic> ChatServiceBase$json = {
