@@ -62,26 +62,3 @@ const SendSmsResponse$json = {
 /// Descriptor for `SendSmsResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List sendSmsResponseDescriptor = $convert.base64Decode(
     'Cg9TZW5kU21zUmVzcG9uc2USGAoHc3VjY2VzcxgBIAEoCFIHc3VjY2Vzcw==');
-
-const $core.Map<$core.String, $core.dynamic> SmsServiceBase$json = {
-  '1': 'SmsService',
-  '2': [
-    {
-      '1': 'SendSms',
-      '2': '.zoogle.SendSmsRequest',
-      '3': '.zoogle.SendSmsResponse'
-    },
-  ],
-};
-
-@$core.Deprecated('Use smsServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
-    SmsServiceBase$messageJson = {
-  '.zoogle.SendSmsRequest': SendSmsRequest$json,
-  '.zoogle.SendSmsResponse': SendSmsResponse$json,
-};
-
-/// Descriptor for `SmsService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List smsServiceDescriptor = $convert.base64Decode(
-    'CgpTbXNTZXJ2aWNlEjoKB1NlbmRTbXMSFi56b29nbGUuU2VuZFNtc1JlcXVlc3QaFy56b29nbG'
-    'UuU2VuZFNtc1Jlc3BvbnNl');

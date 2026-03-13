@@ -10,14 +10,13 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'base.pb.dart' as $1;
-import 'user.pb.dart' as $0;
+import 'user.pb.dart' as $2;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -33,7 +32,7 @@ class Comment extends $pb.GeneratedMessage {
     $fixnum.Int64? createdAt,
     $fixnum.Int64? deletedAt,
     $core.Iterable<Comment>? replies,
-    $0.User? author,
+    $2.User? author,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -72,8 +71,8 @@ class Comment extends $pb.GeneratedMessage {
     ..aInt64(8, _omitFieldNames ? '' : 'deletedAt')
     ..pPM<Comment>(9, _omitFieldNames ? '' : 'replies',
         subBuilder: Comment.create)
-    ..aOM<$0.User>(10, _omitFieldNames ? '' : 'author',
-        subBuilder: $0.User.create)
+    ..aOM<$2.User>(10, _omitFieldNames ? '' : 'author',
+        subBuilder: $2.User.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -170,15 +169,15 @@ class Comment extends $pb.GeneratedMessage {
   $pb.PbList<Comment> get replies => $_getList(8);
 
   @$pb.TagNumber(10)
-  $0.User get author => $_getN(9);
+  $2.User get author => $_getN(9);
   @$pb.TagNumber(10)
-  set author($0.User value) => $_setField(10, value);
+  set author($2.User value) => $_setField(10, value);
   @$pb.TagNumber(10)
   $core.bool hasAuthor() => $_has(9);
   @$pb.TagNumber(10)
   void clearAuthor() => $_clearField(10);
   @$pb.TagNumber(10)
-  $0.User ensureAuthor() => $_ensure(9);
+  $2.User ensureAuthor() => $_ensure(9);
 }
 
 class CreateCommentRequest extends $pb.GeneratedMessage {
@@ -514,35 +513,6 @@ class GetCommentByRootIdRequest extends $pb.GeneratedMessage {
   void clearPageable() => $_clearField(2);
   @$pb.TagNumber(2)
   $1.Pageable ensurePageable() => $_ensure(1);
-}
-
-/// rpc
-class CommentServiceApi {
-  final $pb.RpcClient _client;
-
-  CommentServiceApi(this._client);
-
-  /// 创建评论
-  $async.Future<$1.Empty> createComment(
-          $pb.ClientContext? ctx, CreateCommentRequest request) =>
-      _client.invoke<$1.Empty>(
-          ctx, 'CommentService', 'CreateComment', request, $1.Empty());
-
-  /// 删除评论，软删除
-  $async.Future<$1.Empty> deleteComment(
-          $pb.ClientContext? ctx, DeleteCommentRequest request) =>
-      _client.invoke<$1.Empty>(
-          ctx, 'CommentService', 'DeleteComment', request, $1.Empty());
-
-  /// 根据post_id获取顶级评论，分页
-  $async.Future<CommentsPageableResponse> getCommentsByPostId(
-          $pb.ClientContext? ctx, GetCommentsByPostIdRequest request) =>
-      _client.invoke<CommentsPageableResponse>(ctx, 'CommentService',
-          'GetCommentsByPostId', request, CommentsPageableResponse());
-  $async.Future<CommentsPageableResponse> getCommentByRootId(
-          $pb.ClientContext? ctx, GetCommentByRootIdRequest request) =>
-      _client.invoke<CommentsPageableResponse>(ctx, 'CommentService',
-          'GetCommentByRootId', request, CommentsPageableResponse());
 }
 
 const $core.bool _omitFieldNames =

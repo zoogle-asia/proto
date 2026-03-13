@@ -10,13 +10,12 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'user.pb.dart' as $0;
+import 'user.pb.dart' as $1;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -137,7 +136,7 @@ class Post extends $pb.GeneratedMessage {
 class PostDetail extends $pb.GeneratedMessage {
   factory PostDetail({
     Post? post,
-    $0.User? author,
+    $1.User? author,
     $core.int? likes,
     $core.bool? likedByCurrentUser,
   }) {
@@ -164,8 +163,8 @@ class PostDetail extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'zoogle'),
       createEmptyInstance: create)
     ..aOM<Post>(1, _omitFieldNames ? '' : 'post', subBuilder: Post.create)
-    ..aOM<$0.User>(2, _omitFieldNames ? '' : 'author',
-        subBuilder: $0.User.create)
+    ..aOM<$1.User>(2, _omitFieldNames ? '' : 'author',
+        subBuilder: $1.User.create)
     ..aI(3, _omitFieldNames ? '' : 'likes')
     ..aOB(4, _omitFieldNames ? '' : 'likedByCurrentUser')
     ..hasRequiredFields = false;
@@ -200,15 +199,15 @@ class PostDetail extends $pb.GeneratedMessage {
   Post ensurePost() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $0.User get author => $_getN(1);
+  $1.User get author => $_getN(1);
   @$pb.TagNumber(2)
-  set author($0.User value) => $_setField(2, value);
+  set author($1.User value) => $_setField(2, value);
   @$pb.TagNumber(2)
   $core.bool hasAuthor() => $_has(1);
   @$pb.TagNumber(2)
   void clearAuthor() => $_clearField(2);
   @$pb.TagNumber(2)
-  $0.User ensureAuthor() => $_ensure(1);
+  $1.User ensureAuthor() => $_ensure(1);
 
   @$pb.TagNumber(3)
   $core.int get likes => $_getIZ(2);
@@ -1128,45 +1127,6 @@ class LikePostResponse extends $pb.GeneratedMessage {
   static LikePostResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<LikePostResponse>(create);
   static LikePostResponse? _defaultInstance;
-}
-
-class PostServiceApi {
-  final $pb.RpcClient _client;
-
-  PostServiceApi(this._client);
-
-  $async.Future<CreatePostResponse> createPost(
-          $pb.ClientContext? ctx, CreatePostRequest request) =>
-      _client.invoke<CreatePostResponse>(
-          ctx, 'PostService', 'CreatePost', request, CreatePostResponse());
-  $async.Future<GetPostResponse> getPost(
-          $pb.ClientContext? ctx, GetPostRequest request) =>
-      _client.invoke<GetPostResponse>(
-          ctx, 'PostService', 'GetPost', request, GetPostResponse());
-  $async.Future<UpdatePostResponse> updatePost(
-          $pb.ClientContext? ctx, UpdatePostRequest request) =>
-      _client.invoke<UpdatePostResponse>(
-          ctx, 'PostService', 'UpdatePost', request, UpdatePostResponse());
-  $async.Future<DeletePostResponse> deletePost(
-          $pb.ClientContext? ctx, DeletePostRequest request) =>
-      _client.invoke<DeletePostResponse>(
-          ctx, 'PostService', 'DeletePost', request, DeletePostResponse());
-  $async.Future<GetPostPageableResponse> getPostPageable(
-          $pb.ClientContext? ctx, GetPostPageableRequest request) =>
-      _client.invoke<GetPostPageableResponse>(ctx, 'PostService',
-          'GetPostPageable', request, GetPostPageableResponse());
-  $async.Future<GetPostByUserIdResponse> getPostByUserId(
-          $pb.ClientContext? ctx, GetPostByUserIdRequest request) =>
-      _client.invoke<GetPostByUserIdResponse>(ctx, 'PostService',
-          'GetPostByUserId', request, GetPostByUserIdResponse());
-  $async.Future<LikePostResponse> likePost(
-          $pb.ClientContext? ctx, LikePostRequest request) =>
-      _client.invoke<LikePostResponse>(
-          ctx, 'PostService', 'LikePost', request, LikePostResponse());
-  $async.Future<PostDetail> getPostDetail(
-          $pb.ClientContext? ctx, GetPostRequest request) =>
-      _client.invoke<PostDetail>(
-          ctx, 'PostService', 'GetPostDetail', request, PostDetail());
 }
 
 const $core.bool _omitFieldNames =

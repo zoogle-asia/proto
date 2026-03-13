@@ -44,26 +44,3 @@ final $typed_data.Uint8List getPreSignedUrlResponseDescriptor =
     $convert.base64Decode(
         'ChdHZXRQcmVTaWduZWRVcmxSZXNwb25zZRIQCgN1cmwYASABKAlSA3VybBIQCgNrZXkYAiABKA'
         'lSA2tleQ==');
-
-const $core.Map<$core.String, $core.dynamic> OssServiceBase$json = {
-  '1': 'OssService',
-  '2': [
-    {
-      '1': 'GetPresignedUrl',
-      '2': '.zoogle.GetPreSignedUrlRequest',
-      '3': '.zoogle.GetPreSignedUrlResponse'
-    },
-  ],
-};
-
-@$core.Deprecated('Use ossServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
-    OssServiceBase$messageJson = {
-  '.zoogle.GetPreSignedUrlRequest': GetPreSignedUrlRequest$json,
-  '.zoogle.GetPreSignedUrlResponse': GetPreSignedUrlResponse$json,
-};
-
-/// Descriptor for `OssService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List ossServiceDescriptor = $convert.base64Decode(
-    'CgpPc3NTZXJ2aWNlElIKD0dldFByZXNpZ25lZFVybBIeLnpvb2dsZS5HZXRQcmVTaWduZWRVcm'
-    'xSZXF1ZXN0Gh8uem9vZ2xlLkdldFByZVNpZ25lZFVybFJlc3BvbnNl');

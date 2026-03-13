@@ -1,0 +1,17 @@
+name: zoogle_proto
+description: protocol buffer definitions for zoogle
+version: 1.0.0
+
+repository: https://github.com/zoogle-asia/proto
+
+environment:
+  sdk: ^3.11.0
+
+# Add regular dependencies here.
+dependencies:
+  protobuf: ^5.1.0
+  grpc: ^4.1.0
+# path: ^1.9.0
+
+dev_dependencies:
+  lints: ^6.0.0

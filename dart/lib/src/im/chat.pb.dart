@@ -10,7 +10,6 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
@@ -1153,21 +1152,6 @@ class Member extends $pb.GeneratedMessage {
   $core.bool hasAvatarUrl() => $_has(2);
   @$pb.TagNumber(3)
   void clearAvatarUrl() => $_clearField(3);
-}
-
-class ChatServiceApi {
-  final $pb.RpcClient _client;
-
-  ChatServiceApi(this._client);
-
-  $async.Future<ChatServerEvent> chatStream(
-          $pb.ClientContext? ctx, ChatClientMessage request) =>
-      _client.invoke<ChatServerEvent>(
-          ctx, 'ChatService', 'ChatStream', request, ChatServerEvent());
-  $async.Future<ListConversationsResponse> listConversations(
-          $pb.ClientContext? ctx, ListConversationsRequest request) =>
-      _client.invoke<ListConversationsResponse>(ctx, 'ChatService',
-          'ListConversations', request, ListConversationsResponse());
 }
 
 const $core.bool _omitFieldNames =

@@ -10,7 +10,6 @@
 // ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
 // ignore_for_file: non_constant_identifier_names, prefer_relative_imports
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
@@ -149,17 +148,6 @@ class GetPreSignedUrlResponse extends $pb.GeneratedMessage {
   $core.bool hasKey() => $_has(1);
   @$pb.TagNumber(2)
   void clearKey() => $_clearField(2);
-}
-
-class OssServiceApi {
-  final $pb.RpcClient _client;
-
-  OssServiceApi(this._client);
-
-  $async.Future<GetPreSignedUrlResponse> getPresignedUrl(
-          $pb.ClientContext? ctx, GetPreSignedUrlRequest request) =>
-      _client.invoke<GetPreSignedUrlResponse>(ctx, 'OssService',
-          'GetPresignedUrl', request, GetPreSignedUrlResponse());
 }
 
 const $core.bool _omitFieldNames =

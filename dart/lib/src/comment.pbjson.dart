@@ -15,9 +15,6 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
-import 'base.pbjson.dart' as $1;
-import 'user.pbjson.dart' as $0;
-
 @$core.Deprecated('Use commentDescriptor instead')
 const Comment$json = {
   '1': 'Comment',
@@ -150,53 +147,3 @@ final $typed_data.Uint8List getCommentByRootIdRequestDescriptor =
     $convert.base64Decode(
         'ChlHZXRDb21tZW50QnlSb290SWRSZXF1ZXN0EhcKB3Jvb3RfaWQYASABKANSBnJvb3RJZBIxCg'
         'hwYWdlYWJsZRgCIAEoCzIVLnpvb2dsZS5iYXNlLlBhZ2VhYmxlUghwYWdlYWJsZQ==');
-
-const $core.Map<$core.String, $core.dynamic> CommentServiceBase$json = {
-  '1': 'CommentService',
-  '2': [
-    {
-      '1': 'CreateComment',
-      '2': '.zoogle.CreateCommentRequest',
-      '3': '.zoogle.base.Empty'
-    },
-    {
-      '1': 'DeleteComment',
-      '2': '.zoogle.DeleteCommentRequest',
-      '3': '.zoogle.base.Empty'
-    },
-    {
-      '1': 'GetCommentsByPostId',
-      '2': '.zoogle.GetCommentsByPostIdRequest',
-      '3': '.zoogle.CommentsPageableResponse'
-    },
-    {
-      '1': 'GetCommentByRootId',
-      '2': '.zoogle.GetCommentByRootIdRequest',
-      '3': '.zoogle.CommentsPageableResponse'
-    },
-  ],
-};
-
-@$core.Deprecated('Use commentServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
-    CommentServiceBase$messageJson = {
-  '.zoogle.CreateCommentRequest': CreateCommentRequest$json,
-  '.zoogle.base.Empty': $1.Empty$json,
-  '.zoogle.DeleteCommentRequest': DeleteCommentRequest$json,
-  '.zoogle.GetCommentsByPostIdRequest': GetCommentsByPostIdRequest$json,
-  '.zoogle.base.Pageable': $1.Pageable$json,
-  '.zoogle.CommentsPageableResponse': CommentsPageableResponse$json,
-  '.zoogle.Comment': Comment$json,
-  '.zoogle.User': $0.User$json,
-  '.zoogle.GetCommentByRootIdRequest': GetCommentByRootIdRequest$json,
-};
-
-/// Descriptor for `CommentService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List commentServiceDescriptor = $convert.base64Decode(
-    'Cg5Db21tZW50U2VydmljZRJBCg1DcmVhdGVDb21tZW50Ehwuem9vZ2xlLkNyZWF0ZUNvbW1lbn'
-    'RSZXF1ZXN0GhIuem9vZ2xlLmJhc2UuRW1wdHkSQQoNRGVsZXRlQ29tbWVudBIcLnpvb2dsZS5E'
-    'ZWxldGVDb21tZW50UmVxdWVzdBoSLnpvb2dsZS5iYXNlLkVtcHR5ElsKE0dldENvbW1lbnRzQn'
-    'lQb3N0SWQSIi56b29nbGUuR2V0Q29tbWVudHNCeVBvc3RJZFJlcXVlc3QaIC56b29nbGUuQ29t'
-    'bWVudHNQYWdlYWJsZVJlc3BvbnNlElkKEkdldENvbW1lbnRCeVJvb3RJZBIhLnpvb2dsZS5HZX'
-    'RDb21tZW50QnlSb290SWRSZXF1ZXN0GiAuem9vZ2xlLkNvbW1lbnRzUGFnZWFibGVSZXNwb25z'
-    'ZQ==');
