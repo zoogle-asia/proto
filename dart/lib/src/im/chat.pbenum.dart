@@ -36,5 +36,24 @@ class MessageType extends $pb.ProtobufEnum {
   const MessageType._(super.value, super.name);
 }
 
+class MessageAckStatus extends $pb.ProtobufEnum {
+  static const MessageAckStatus DELIVERED =
+      MessageAckStatus._(0, _omitEnumNames ? '' : 'DELIVERED');
+  static const MessageAckStatus READ =
+      MessageAckStatus._(1, _omitEnumNames ? '' : 'READ');
+
+  static const $core.List<MessageAckStatus> values = <MessageAckStatus>[
+    DELIVERED,
+    READ,
+  ];
+
+  static final $core.List<MessageAckStatus?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 1);
+  static MessageAckStatus? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
+
+  const MessageAckStatus._(super.value, super.name);
+}
+
 const $core.bool _omitEnumNames =
     $core.bool.fromEnvironment('protobuf.omit_enum_names');

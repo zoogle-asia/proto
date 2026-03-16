@@ -61,10 +61,15 @@ message NewMessage {
   MessageType type = 6;
   int64  created_at = 7;
 }
+enum MessageAckStatus {
+  DELIVERED = 0;
+  READ = 1;
+}
 
 message MessageAck {
   int64 message_id = 1;
-  string status = 2;
+  string client_id = 2;
+  MessageAckStatus status = 3;
 }
 
 message PresenceUpdate {

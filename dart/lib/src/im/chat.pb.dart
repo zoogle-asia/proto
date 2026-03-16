@@ -657,10 +657,12 @@ class NewMessage extends $pb.GeneratedMessage {
 class MessageAck extends $pb.GeneratedMessage {
   factory MessageAck({
     $fixnum.Int64? messageId,
-    $core.String? status,
+    $core.String? clientId,
+    MessageAckStatus? status,
   }) {
     final result = create();
     if (messageId != null) result.messageId = messageId;
+    if (clientId != null) result.clientId = clientId;
     if (status != null) result.status = status;
     return result;
   }
@@ -679,7 +681,9 @@ class MessageAck extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
     ..aInt64(1, _omitFieldNames ? '' : 'messageId')
-    ..aOS(2, _omitFieldNames ? '' : 'status')
+    ..aOS(2, _omitFieldNames ? '' : 'clientId')
+    ..aE<MessageAckStatus>(3, _omitFieldNames ? '' : 'status',
+        enumValues: MessageAckStatus.values)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -710,13 +714,22 @@ class MessageAck extends $pb.GeneratedMessage {
   void clearMessageId() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get status => $_getSZ(1);
+  $core.String get clientId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set status($core.String value) => $_setString(1, value);
+  set clientId($core.String value) => $_setString(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasStatus() => $_has(1);
+  $core.bool hasClientId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearStatus() => $_clearField(2);
+  void clearClientId() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  MessageAckStatus get status => $_getN(2);
+  @$pb.TagNumber(3)
+  set status(MessageAckStatus value) => $_setField(3, value);
+  @$pb.TagNumber(3)
+  $core.bool hasStatus() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearStatus() => $_clearField(3);
 }
 
 class PresenceUpdate extends $pb.GeneratedMessage {

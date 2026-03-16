@@ -70,6 +70,52 @@ func (MessageType) EnumDescriptor() ([]byte, []int) {
 	return file_im_chat_proto_rawDescGZIP(), []int{0}
 }
 
+type MessageAckStatus int32
+
+const (
+	MessageAckStatus_DELIVERED MessageAckStatus = 0
+	MessageAckStatus_READ      MessageAckStatus = 1
+)
+
+// Enum value maps for MessageAckStatus.
+var (
+	MessageAckStatus_name = map[int32]string{
+		0: "DELIVERED",
+		1: "READ",
+	}
+	MessageAckStatus_value = map[string]int32{
+		"DELIVERED": 0,
+		"READ":      1,
+	}
+)
+
+func (x MessageAckStatus) Enum() *MessageAckStatus {
+	p := new(MessageAckStatus)
+	*p = x
+	return p
+}
+
+func (x MessageAckStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (MessageAckStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_im_chat_proto_enumTypes[1].Descriptor()
+}
+
+func (MessageAckStatus) Type() protoreflect.EnumType {
+	return &file_im_chat_proto_enumTypes[1]
+}
+
+func (x MessageAckStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use MessageAckStatus.Descriptor instead.
+func (MessageAckStatus) EnumDescriptor() ([]byte, []int) {
+	return file_im_chat_proto_rawDescGZIP(), []int{1}
+}
+
 type ChatClientMessage struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Payload:
@@ -593,7 +639,8 @@ func (x *NewMessage) GetCreatedAt() int64 {
 type MessageAck struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MessageId     int64                  `protobuf:"varint,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	ClientId      string                 `protobuf:"bytes,2,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
+	Status        MessageAckStatus       `protobuf:"varint,3,opt,name=status,proto3,enum=chat.v1.MessageAckStatus" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -635,11 +682,18 @@ func (x *MessageAck) GetMessageId() int64 {
 	return 0
 }
 
-func (x *MessageAck) GetStatus() string {
+func (x *MessageAck) GetClientId() string {
+	if x != nil {
+		return x.ClientId
+	}
+	return ""
+}
+
+func (x *MessageAck) GetStatus() MessageAckStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ""
+	return MessageAckStatus_DELIVERED
 }
 
 type PresenceUpdate struct {
@@ -1028,12 +1082,13 @@ const file_im_chat_proto_rawDesc = "" +
 	"\acontent\x18\x05 \x01(\tR\acontent\x12(\n" +
 	"\x04type\x18\x06 \x01(\x0e2\x14.chat.v1.MessageTypeR\x04type\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\x03R\tcreatedAt\"C\n" +
+	"created_at\x18\a \x01(\x03R\tcreatedAt\"{\n" +
 	"\n" +
 	"MessageAck\x12\x1d\n" +
 	"\n" +
-	"message_id\x18\x01 \x01(\x03R\tmessageId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\"A\n" +
+	"message_id\x18\x01 \x01(\x03R\tmessageId\x12\x1b\n" +
+	"\tclient_id\x18\x02 \x01(\tR\bclientId\x121\n" +
+	"\x06status\x18\x03 \x01(\x0e2\x19.chat.v1.MessageAckStatusR\x06status\"A\n" +
 	"\x0ePresenceUpdate\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\";\n" +
@@ -1062,7 +1117,10 @@ const file_im_chat_proto_rawDesc = "" +
 	"\vMessageType\x12\b\n" +
 	"\x04Text\x10\x00\x12\t\n" +
 	"\x05Image\x10\x01\x12\t\n" +
-	"\x05Video\x10\x022\xb1\x01\n" +
+	"\x05Video\x10\x02*+\n" +
+	"\x10MessageAckStatus\x12\r\n" +
+	"\tDELIVERED\x10\x00\x12\b\n" +
+	"\x04READ\x10\x012\xb1\x01\n" +
 	"\vChatService\x12F\n" +
 	"\n" +
 	"ChatStream\x12\x1a.chat.v1.ChatClientMessage\x1a\x18.chat.v1.ChatServerEvent(\x010\x01\x12Z\n" +
@@ -1080,47 +1138,49 @@ func file_im_chat_proto_rawDescGZIP() []byte {
 	return file_im_chat_proto_rawDescData
 }
 
-var file_im_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_im_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_im_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_im_chat_proto_goTypes = []any{
 	(MessageType)(0),                  // 0: chat.v1.MessageType
-	(*ChatClientMessage)(nil),         // 1: chat.v1.ChatClientMessage
-	(*ChatServerEvent)(nil),           // 2: chat.v1.ChatServerEvent
-	(*Auth)(nil),                      // 3: chat.v1.Auth
-	(*Heartbeat)(nil),                 // 4: chat.v1.Heartbeat
-	(*SendMessage)(nil),               // 5: chat.v1.SendMessage
-	(*AckMessage)(nil),                // 6: chat.v1.AckMessage
-	(*NewMessage)(nil),                // 7: chat.v1.NewMessage
-	(*MessageAck)(nil),                // 8: chat.v1.MessageAck
-	(*PresenceUpdate)(nil),            // 9: chat.v1.PresenceUpdate
-	(*SystemEvent)(nil),               // 10: chat.v1.SystemEvent
-	(*ListConversationsRequest)(nil),  // 11: chat.v1.ListConversationsRequest
-	(*ListConversationsResponse)(nil), // 12: chat.v1.ListConversationsResponse
-	(*Conversation)(nil),              // 13: chat.v1.Conversation
-	(*Member)(nil),                    // 14: chat.v1.Member
+	(MessageAckStatus)(0),             // 1: chat.v1.MessageAckStatus
+	(*ChatClientMessage)(nil),         // 2: chat.v1.ChatClientMessage
+	(*ChatServerEvent)(nil),           // 3: chat.v1.ChatServerEvent
+	(*Auth)(nil),                      // 4: chat.v1.Auth
+	(*Heartbeat)(nil),                 // 5: chat.v1.Heartbeat
+	(*SendMessage)(nil),               // 6: chat.v1.SendMessage
+	(*AckMessage)(nil),                // 7: chat.v1.AckMessage
+	(*NewMessage)(nil),                // 8: chat.v1.NewMessage
+	(*MessageAck)(nil),                // 9: chat.v1.MessageAck
+	(*PresenceUpdate)(nil),            // 10: chat.v1.PresenceUpdate
+	(*SystemEvent)(nil),               // 11: chat.v1.SystemEvent
+	(*ListConversationsRequest)(nil),  // 12: chat.v1.ListConversationsRequest
+	(*ListConversationsResponse)(nil), // 13: chat.v1.ListConversationsResponse
+	(*Conversation)(nil),              // 14: chat.v1.Conversation
+	(*Member)(nil),                    // 15: chat.v1.Member
 }
 var file_im_chat_proto_depIdxs = []int32{
-	3,  // 0: chat.v1.ChatClientMessage.auth:type_name -> chat.v1.Auth
-	5,  // 1: chat.v1.ChatClientMessage.send_message:type_name -> chat.v1.SendMessage
-	6,  // 2: chat.v1.ChatClientMessage.ack_message:type_name -> chat.v1.AckMessage
-	4,  // 3: chat.v1.ChatClientMessage.heartbeat:type_name -> chat.v1.Heartbeat
-	7,  // 4: chat.v1.ChatServerEvent.new_message:type_name -> chat.v1.NewMessage
-	8,  // 5: chat.v1.ChatServerEvent.message_ack:type_name -> chat.v1.MessageAck
-	9,  // 6: chat.v1.ChatServerEvent.presence_update:type_name -> chat.v1.PresenceUpdate
-	10, // 7: chat.v1.ChatServerEvent.system_event:type_name -> chat.v1.SystemEvent
+	4,  // 0: chat.v1.ChatClientMessage.auth:type_name -> chat.v1.Auth
+	6,  // 1: chat.v1.ChatClientMessage.send_message:type_name -> chat.v1.SendMessage
+	7,  // 2: chat.v1.ChatClientMessage.ack_message:type_name -> chat.v1.AckMessage
+	5,  // 3: chat.v1.ChatClientMessage.heartbeat:type_name -> chat.v1.Heartbeat
+	8,  // 4: chat.v1.ChatServerEvent.new_message:type_name -> chat.v1.NewMessage
+	9,  // 5: chat.v1.ChatServerEvent.message_ack:type_name -> chat.v1.MessageAck
+	10, // 6: chat.v1.ChatServerEvent.presence_update:type_name -> chat.v1.PresenceUpdate
+	11, // 7: chat.v1.ChatServerEvent.system_event:type_name -> chat.v1.SystemEvent
 	0,  // 8: chat.v1.SendMessage.type:type_name -> chat.v1.MessageType
 	0,  // 9: chat.v1.NewMessage.type:type_name -> chat.v1.MessageType
-	13, // 10: chat.v1.ListConversationsResponse.conversations:type_name -> chat.v1.Conversation
-	14, // 11: chat.v1.Conversation.members:type_name -> chat.v1.Member
-	1,  // 12: chat.v1.ChatService.ChatStream:input_type -> chat.v1.ChatClientMessage
-	11, // 13: chat.v1.ChatService.ListConversations:input_type -> chat.v1.ListConversationsRequest
-	2,  // 14: chat.v1.ChatService.ChatStream:output_type -> chat.v1.ChatServerEvent
-	12, // 15: chat.v1.ChatService.ListConversations:output_type -> chat.v1.ListConversationsResponse
-	14, // [14:16] is the sub-list for method output_type
-	12, // [12:14] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	1,  // 10: chat.v1.MessageAck.status:type_name -> chat.v1.MessageAckStatus
+	14, // 11: chat.v1.ListConversationsResponse.conversations:type_name -> chat.v1.Conversation
+	15, // 12: chat.v1.Conversation.members:type_name -> chat.v1.Member
+	2,  // 13: chat.v1.ChatService.ChatStream:input_type -> chat.v1.ChatClientMessage
+	12, // 14: chat.v1.ChatService.ListConversations:input_type -> chat.v1.ListConversationsRequest
+	3,  // 15: chat.v1.ChatService.ChatStream:output_type -> chat.v1.ChatServerEvent
+	13, // 16: chat.v1.ChatService.ListConversations:output_type -> chat.v1.ListConversationsResponse
+	15, // [15:17] is the sub-list for method output_type
+	13, // [13:15] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_im_chat_proto_init() }
@@ -1145,7 +1205,7 @@ func file_im_chat_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_im_chat_proto_rawDesc), len(file_im_chat_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,

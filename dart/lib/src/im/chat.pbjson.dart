@@ -29,6 +29,19 @@ const MessageType$json = {
 final $typed_data.Uint8List messageTypeDescriptor = $convert.base64Decode(
     'CgtNZXNzYWdlVHlwZRIICgRUZXh0EAASCQoFSW1hZ2UQARIJCgVWaWRlbxAC');
 
+@$core.Deprecated('Use messageAckStatusDescriptor instead')
+const MessageAckStatus$json = {
+  '1': 'MessageAckStatus',
+  '2': [
+    {'1': 'DELIVERED', '2': 0},
+    {'1': 'READ', '2': 1},
+  ],
+};
+
+/// Descriptor for `MessageAckStatus`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List messageAckStatusDescriptor = $convert.base64Decode(
+    'ChBNZXNzYWdlQWNrU3RhdHVzEg0KCURFTElWRVJFRBAAEggKBFJFQUQQAQ==');
+
 @$core.Deprecated('Use chatClientMessageDescriptor instead')
 const ChatClientMessage$json = {
   '1': 'ChatClientMessage',
@@ -230,14 +243,23 @@ const MessageAck$json = {
   '1': 'MessageAck',
   '2': [
     {'1': 'message_id', '3': 1, '4': 1, '5': 3, '10': 'messageId'},
-    {'1': 'status', '3': 2, '4': 1, '5': 9, '10': 'status'},
+    {'1': 'client_id', '3': 2, '4': 1, '5': 9, '10': 'clientId'},
+    {
+      '1': 'status',
+      '3': 3,
+      '4': 1,
+      '5': 14,
+      '6': '.chat.v1.MessageAckStatus',
+      '10': 'status'
+    },
   ],
 };
 
 /// Descriptor for `MessageAck`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List messageAckDescriptor = $convert.base64Decode(
-    'CgpNZXNzYWdlQWNrEh0KCm1lc3NhZ2VfaWQYASABKANSCW1lc3NhZ2VJZBIWCgZzdGF0dXMYAi'
-    'ABKAlSBnN0YXR1cw==');
+    'CgpNZXNzYWdlQWNrEh0KCm1lc3NhZ2VfaWQYASABKANSCW1lc3NhZ2VJZBIbCgljbGllbnRfaW'
+    'QYAiABKAlSCGNsaWVudElkEjEKBnN0YXR1cxgDIAEoDjIZLmNoYXQudjEuTWVzc2FnZUFja1N0'
+    'YXR1c1IGc3RhdHVz');
 
 @$core.Deprecated('Use presenceUpdateDescriptor instead')
 const PresenceUpdate$json = {
