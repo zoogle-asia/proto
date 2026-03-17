@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ChatService_ChatStream_FullMethodName        = "/chat.v1.ChatService/ChatStream"
-	ChatService_ListConversations_FullMethodName = "/chat.v1.ChatService/ListConversations"
+	ChatService_ChatStream_FullMethodName         = "/chat.v1.ChatService/ChatStream"
+	ChatService_CreateConversation_FullMethodName = "/chat.v1.ChatService/CreateConversation"
+	ChatService_ListConversations_FullMethodName  = "/chat.v1.ChatService/ListConversations"
 )
 
 // ChatServiceClient is the client API for ChatService service.
@@ -28,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChatServiceClient interface {
 	ChatStream(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[ChatClientMessage, ChatServerEvent], error)
+	CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error)
 	ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error)
 }
 
@@ -52,6 +54,16 @@ func (c *chatServiceClient) ChatStream(ctx context.Context, opts ...grpc.CallOpt
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ChatService_ChatStreamClient = grpc.BidiStreamingClient[ChatClientMessage, ChatServerEvent]
 
+func (c *chatServiceClient) CreateConversation(ctx context.Context, in *CreateConversationRequest, opts ...grpc.CallOption) (*CreateConversationResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateConversationResponse)
+	err := c.cc.Invoke(ctx, ChatService_CreateConversation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *chatServiceClient) ListConversations(ctx context.Context, in *ListConversationsRequest, opts ...grpc.CallOption) (*ListConversationsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListConversationsResponse)
@@ -67,6 +79,7 @@ func (c *chatServiceClient) ListConversations(ctx context.Context, in *ListConve
 // for forward compatibility.
 type ChatServiceServer interface {
 	ChatStream(grpc.BidiStreamingServer[ChatClientMessage, ChatServerEvent]) error
+	CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error)
 	ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error)
 	mustEmbedUnimplementedChatServiceServer()
 }
@@ -80,6 +93,9 @@ type UnimplementedChatServiceServer struct{}
 
 func (UnimplementedChatServiceServer) ChatStream(grpc.BidiStreamingServer[ChatClientMessage, ChatServerEvent]) error {
 	return status.Error(codes.Unimplemented, "method ChatStream not implemented")
+}
+func (UnimplementedChatServiceServer) CreateConversation(context.Context, *CreateConversationRequest) (*CreateConversationResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateConversation not implemented")
 }
 func (UnimplementedChatServiceServer) ListConversations(context.Context, *ListConversationsRequest) (*ListConversationsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ListConversations not implemented")
@@ -112,6 +128,24 @@ func _ChatService_ChatStream_Handler(srv interface{}, stream grpc.ServerStream) 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ChatService_ChatStreamServer = grpc.BidiStreamingServer[ChatClientMessage, ChatServerEvent]
 
+func _ChatService_CreateConversation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateConversationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ChatServiceServer).CreateConversation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ChatService_CreateConversation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ChatServiceServer).CreateConversation(ctx, req.(*CreateConversationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ChatService_ListConversations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListConversationsRequest)
 	if err := dec(in); err != nil {
@@ -137,6 +171,10 @@ var ChatService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "chat.v1.ChatService",
 	HandlerType: (*ChatServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateConversation",
+			Handler:    _ChatService_CreateConversation_Handler,
+		},
 		{
 			MethodName: "ListConversations",
 			Handler:    _ChatService_ListConversations_Handler,

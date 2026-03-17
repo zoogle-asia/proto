@@ -365,3 +365,40 @@ const Member$json = {
 final $typed_data.Uint8List memberDescriptor = $convert.base64Decode(
     'CgZNZW1iZXISFwoHdXNlcl9pZBgBIAEoA1IGdXNlcklkEhIKBG5hbWUYAiABKAlSBG5hbWUSHQ'
     'oKYXZhdGFyX3VybBgDIAEoCVIJYXZhdGFyVXJs');
+
+@$core.Deprecated('Use createConversationRequestDescriptor instead')
+const CreateConversationRequest$json = {
+  '1': 'CreateConversationRequest',
+  '2': [
+    {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
+    {'1': 'is_group', '3': 2, '4': 1, '5': 8, '10': 'isGroup'},
+    {'1': 'member_ids', '3': 3, '4': 3, '5': 3, '10': 'memberIds'},
+  ],
+};
+
+/// Descriptor for `CreateConversationRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List createConversationRequestDescriptor =
+    $convert.base64Decode(
+        'ChlDcmVhdGVDb252ZXJzYXRpb25SZXF1ZXN0EhQKBXRpdGxlGAEgASgJUgV0aXRsZRIZCghpc1'
+        '9ncm91cBgCIAEoCFIHaXNHcm91cBIdCgptZW1iZXJfaWRzGAMgAygDUgltZW1iZXJJZHM=');
+
+@$core.Deprecated('Use createConversationResponseDescriptor instead')
+const CreateConversationResponse$json = {
+  '1': 'CreateConversationResponse',
+  '2': [
+    {
+      '1': 'conversation',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.chat.v1.Conversation',
+      '10': 'conversation'
+    },
+  ],
+};
+
+/// Descriptor for `CreateConversationResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List createConversationResponseDescriptor =
+    $convert.base64Decode(
+        'ChpDcmVhdGVDb252ZXJzYXRpb25SZXNwb25zZRI5Cgxjb252ZXJzYXRpb24YASABKAsyFS5jaG'
+        'F0LnYxLkNvbnZlcnNhdGlvblIMY29udmVyc2F0aW9u');

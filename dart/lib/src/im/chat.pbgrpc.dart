@@ -39,6 +39,13 @@ class ChatServiceClient extends $grpc.Client {
     return $createStreamingCall(_$chatStream, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.CreateConversationResponse> createConversation(
+    $0.CreateConversationRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$createConversation, request, options: options);
+  }
+
   $grpc.ResponseFuture<$0.ListConversationsResponse> listConversations(
     $0.ListConversationsRequest request, {
     $grpc.CallOptions? options,
@@ -53,6 +60,11 @@ class ChatServiceClient extends $grpc.Client {
           '/chat.v1.ChatService/ChatStream',
           ($0.ChatClientMessage value) => value.writeToBuffer(),
           $0.ChatServerEvent.fromBuffer);
+  static final _$createConversation = $grpc.ClientMethod<
+          $0.CreateConversationRequest, $0.CreateConversationResponse>(
+      '/chat.v1.ChatService/CreateConversation',
+      ($0.CreateConversationRequest value) => value.writeToBuffer(),
+      $0.CreateConversationResponse.fromBuffer);
   static final _$listConversations = $grpc.ClientMethod<
           $0.ListConversationsRequest, $0.ListConversationsResponse>(
       '/chat.v1.ChatService/ListConversations',
@@ -72,6 +84,15 @@ abstract class ChatServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $0.ChatClientMessage.fromBuffer(value),
         ($0.ChatServerEvent value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.CreateConversationRequest,
+            $0.CreateConversationResponse>(
+        'CreateConversation',
+        createConversation_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.CreateConversationRequest.fromBuffer(value),
+        ($0.CreateConversationResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ListConversationsRequest,
             $0.ListConversationsResponse>(
         'ListConversations',
@@ -85,6 +106,15 @@ abstract class ChatServiceBase extends $grpc.Service {
 
   $async.Stream<$0.ChatServerEvent> chatStream(
       $grpc.ServiceCall call, $async.Stream<$0.ChatClientMessage> request);
+
+  $async.Future<$0.CreateConversationResponse> createConversation_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.CreateConversationRequest> $request) async {
+    return createConversation($call, await $request);
+  }
+
+  $async.Future<$0.CreateConversationResponse> createConversation(
+      $grpc.ServiceCall call, $0.CreateConversationRequest request);
 
   $async.Future<$0.ListConversationsResponse> listConversations_Pre(
       $grpc.ServiceCall $call,

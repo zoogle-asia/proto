@@ -6,6 +6,7 @@ option go_package = "github.com/ren/zoogle-im/proto/gen;chatv1";
 
 service ChatService {
   rpc ChatStream(stream ChatClientMessage) returns (stream ChatServerEvent);
+  rpc CreateConversation(CreateConversationRequest) returns (CreateConversationResponse);
   rpc ListConversations(ListConversationsRequest) returns (ListConversationsResponse);
 }
 
@@ -104,4 +105,14 @@ message Member {
   int64 user_id = 1;
   string name = 2;
   string avatar_url = 3;
+}
+
+message  CreateConversationRequest{
+  string title = 1;
+  bool   is_group = 2;
+  repeated int64 member_ids = 3;
+}
+
+message CreateConversationResponse {
+  Conversation conversation = 1;
 }

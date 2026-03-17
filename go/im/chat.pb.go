@@ -1040,6 +1040,110 @@ func (x *Member) GetAvatarUrl() string {
 	return ""
 }
 
+type CreateConversationRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	IsGroup       bool                   `protobuf:"varint,2,opt,name=is_group,json=isGroup,proto3" json:"is_group,omitempty"`
+	MemberIds     []int64                `protobuf:"varint,3,rep,packed,name=member_ids,json=memberIds,proto3" json:"member_ids,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateConversationRequest) Reset() {
+	*x = CreateConversationRequest{}
+	mi := &file_im_chat_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateConversationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateConversationRequest) ProtoMessage() {}
+
+func (x *CreateConversationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_im_chat_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateConversationRequest.ProtoReflect.Descriptor instead.
+func (*CreateConversationRequest) Descriptor() ([]byte, []int) {
+	return file_im_chat_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *CreateConversationRequest) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *CreateConversationRequest) GetIsGroup() bool {
+	if x != nil {
+		return x.IsGroup
+	}
+	return false
+}
+
+func (x *CreateConversationRequest) GetMemberIds() []int64 {
+	if x != nil {
+		return x.MemberIds
+	}
+	return nil
+}
+
+type CreateConversationResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Conversation  *Conversation          `protobuf:"bytes,1,opt,name=conversation,proto3" json:"conversation,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateConversationResponse) Reset() {
+	*x = CreateConversationResponse{}
+	mi := &file_im_chat_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateConversationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateConversationResponse) ProtoMessage() {}
+
+func (x *CreateConversationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_im_chat_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateConversationResponse.ProtoReflect.Descriptor instead.
+func (*CreateConversationResponse) Descriptor() ([]byte, []int) {
+	return file_im_chat_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *CreateConversationResponse) GetConversation() *Conversation {
+	if x != nil {
+		return x.Conversation
+	}
+	return nil
+}
+
 var File_im_chat_proto protoreflect.FileDescriptor
 
 const file_im_chat_proto_rawDesc = "" +
@@ -1113,17 +1217,25 @@ const file_im_chat_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
 	"\n" +
-	"avatar_url\x18\x03 \x01(\tR\tavatarUrl*-\n" +
+	"avatar_url\x18\x03 \x01(\tR\tavatarUrl\"k\n" +
+	"\x19CreateConversationRequest\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x19\n" +
+	"\bis_group\x18\x02 \x01(\bR\aisGroup\x12\x1d\n" +
+	"\n" +
+	"member_ids\x18\x03 \x03(\x03R\tmemberIds\"W\n" +
+	"\x1aCreateConversationResponse\x129\n" +
+	"\fconversation\x18\x01 \x01(\v2\x15.chat.v1.ConversationR\fconversation*-\n" +
 	"\vMessageType\x12\b\n" +
 	"\x04Text\x10\x00\x12\t\n" +
 	"\x05Image\x10\x01\x12\t\n" +
 	"\x05Video\x10\x02*+\n" +
 	"\x10MessageAckStatus\x12\r\n" +
 	"\tDELIVERED\x10\x00\x12\b\n" +
-	"\x04READ\x10\x012\xb1\x01\n" +
+	"\x04READ\x10\x012\x90\x02\n" +
 	"\vChatService\x12F\n" +
 	"\n" +
-	"ChatStream\x12\x1a.chat.v1.ChatClientMessage\x1a\x18.chat.v1.ChatServerEvent(\x010\x01\x12Z\n" +
+	"ChatStream\x12\x1a.chat.v1.ChatClientMessage\x1a\x18.chat.v1.ChatServerEvent(\x010\x01\x12]\n" +
+	"\x12CreateConversation\x12\".chat.v1.CreateConversationRequest\x1a#.chat.v1.CreateConversationResponse\x12Z\n" +
 	"\x11ListConversations\x12!.chat.v1.ListConversationsRequest\x1a\".chat.v1.ListConversationsResponseB+Z)github.com/ren/zoogle-im/proto/gen;chatv1b\x06proto3"
 
 var (
@@ -1139,24 +1251,26 @@ func file_im_chat_proto_rawDescGZIP() []byte {
 }
 
 var file_im_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_im_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_im_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_im_chat_proto_goTypes = []any{
-	(MessageType)(0),                  // 0: chat.v1.MessageType
-	(MessageAckStatus)(0),             // 1: chat.v1.MessageAckStatus
-	(*ChatClientMessage)(nil),         // 2: chat.v1.ChatClientMessage
-	(*ChatServerEvent)(nil),           // 3: chat.v1.ChatServerEvent
-	(*Auth)(nil),                      // 4: chat.v1.Auth
-	(*Heartbeat)(nil),                 // 5: chat.v1.Heartbeat
-	(*SendMessage)(nil),               // 6: chat.v1.SendMessage
-	(*AckMessage)(nil),                // 7: chat.v1.AckMessage
-	(*NewMessage)(nil),                // 8: chat.v1.NewMessage
-	(*MessageAck)(nil),                // 9: chat.v1.MessageAck
-	(*PresenceUpdate)(nil),            // 10: chat.v1.PresenceUpdate
-	(*SystemEvent)(nil),               // 11: chat.v1.SystemEvent
-	(*ListConversationsRequest)(nil),  // 12: chat.v1.ListConversationsRequest
-	(*ListConversationsResponse)(nil), // 13: chat.v1.ListConversationsResponse
-	(*Conversation)(nil),              // 14: chat.v1.Conversation
-	(*Member)(nil),                    // 15: chat.v1.Member
+	(MessageType)(0),                   // 0: chat.v1.MessageType
+	(MessageAckStatus)(0),              // 1: chat.v1.MessageAckStatus
+	(*ChatClientMessage)(nil),          // 2: chat.v1.ChatClientMessage
+	(*ChatServerEvent)(nil),            // 3: chat.v1.ChatServerEvent
+	(*Auth)(nil),                       // 4: chat.v1.Auth
+	(*Heartbeat)(nil),                  // 5: chat.v1.Heartbeat
+	(*SendMessage)(nil),                // 6: chat.v1.SendMessage
+	(*AckMessage)(nil),                 // 7: chat.v1.AckMessage
+	(*NewMessage)(nil),                 // 8: chat.v1.NewMessage
+	(*MessageAck)(nil),                 // 9: chat.v1.MessageAck
+	(*PresenceUpdate)(nil),             // 10: chat.v1.PresenceUpdate
+	(*SystemEvent)(nil),                // 11: chat.v1.SystemEvent
+	(*ListConversationsRequest)(nil),   // 12: chat.v1.ListConversationsRequest
+	(*ListConversationsResponse)(nil),  // 13: chat.v1.ListConversationsResponse
+	(*Conversation)(nil),               // 14: chat.v1.Conversation
+	(*Member)(nil),                     // 15: chat.v1.Member
+	(*CreateConversationRequest)(nil),  // 16: chat.v1.CreateConversationRequest
+	(*CreateConversationResponse)(nil), // 17: chat.v1.CreateConversationResponse
 }
 var file_im_chat_proto_depIdxs = []int32{
 	4,  // 0: chat.v1.ChatClientMessage.auth:type_name -> chat.v1.Auth
@@ -1172,15 +1286,18 @@ var file_im_chat_proto_depIdxs = []int32{
 	1,  // 10: chat.v1.MessageAck.status:type_name -> chat.v1.MessageAckStatus
 	14, // 11: chat.v1.ListConversationsResponse.conversations:type_name -> chat.v1.Conversation
 	15, // 12: chat.v1.Conversation.members:type_name -> chat.v1.Member
-	2,  // 13: chat.v1.ChatService.ChatStream:input_type -> chat.v1.ChatClientMessage
-	12, // 14: chat.v1.ChatService.ListConversations:input_type -> chat.v1.ListConversationsRequest
-	3,  // 15: chat.v1.ChatService.ChatStream:output_type -> chat.v1.ChatServerEvent
-	13, // 16: chat.v1.ChatService.ListConversations:output_type -> chat.v1.ListConversationsResponse
-	15, // [15:17] is the sub-list for method output_type
-	13, // [13:15] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	14, // 13: chat.v1.CreateConversationResponse.conversation:type_name -> chat.v1.Conversation
+	2,  // 14: chat.v1.ChatService.ChatStream:input_type -> chat.v1.ChatClientMessage
+	16, // 15: chat.v1.ChatService.CreateConversation:input_type -> chat.v1.CreateConversationRequest
+	12, // 16: chat.v1.ChatService.ListConversations:input_type -> chat.v1.ListConversationsRequest
+	3,  // 17: chat.v1.ChatService.ChatStream:output_type -> chat.v1.ChatServerEvent
+	17, // 18: chat.v1.ChatService.CreateConversation:output_type -> chat.v1.CreateConversationResponse
+	13, // 19: chat.v1.ChatService.ListConversations:output_type -> chat.v1.ListConversationsResponse
+	17, // [17:20] is the sub-list for method output_type
+	14, // [14:17] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_im_chat_proto_init() }
@@ -1206,7 +1323,7 @@ func file_im_chat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_im_chat_proto_rawDesc), len(file_im_chat_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   14,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
