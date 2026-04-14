@@ -155,12 +155,14 @@ const Auth$json = {
   '1': 'Auth',
   '2': [
     {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
+    {'1': 'last_received_at', '3': 2, '4': 1, '5': 3, '10': 'lastReceivedAt'},
   ],
 };
 
 /// Descriptor for `Auth`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List authDescriptor =
-    $convert.base64Decode('CgRBdXRoEhQKBXRva2VuGAEgASgJUgV0b2tlbg==');
+final $typed_data.Uint8List authDescriptor = $convert.base64Decode(
+    'CgRBdXRoEhQKBXRva2VuGAEgASgJUgV0b2tlbhIoChBsYXN0X3JlY2VpdmVkX2F0GAIgASgDUg'
+    '5sYXN0UmVjZWl2ZWRBdA==');
 
 @$core.Deprecated('Use heartbeatDescriptor instead')
 const Heartbeat$json = {
@@ -293,16 +295,29 @@ final $typed_data.Uint8List systemEventDescriptor = $convert.base64Decode(
 const ListConversationsRequest$json = {
   '1': 'ListConversationsRequest',
   '2': [
-    {'1': 'page_size', '3': 1, '4': 1, '5': 5, '10': 'pageSize'},
-    {'1': 'page_token', '3': 2, '4': 1, '5': 9, '10': 'pageToken'},
+    {'1': 'page_size', '3': 1, '4': 1, '5': 3, '10': 'pageSize'},
+    {'1': 'page', '3': 2, '4': 1, '5': 3, '10': 'page'},
+    {'1': 'keywords', '3': 3, '4': 1, '5': 9, '10': 'keywords'},
+    {
+      '1': 'is_group',
+      '3': 4,
+      '4': 1,
+      '5': 8,
+      '9': 0,
+      '10': 'isGroup',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_is_group'},
   ],
 };
 
 /// Descriptor for `ListConversationsRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List listConversationsRequestDescriptor =
-    $convert.base64Decode(
-        'ChhMaXN0Q29udmVyc2F0aW9uc1JlcXVlc3QSGwoJcGFnZV9zaXplGAEgASgFUghwYWdlU2l6ZR'
-        'IdCgpwYWdlX3Rva2VuGAIgASgJUglwYWdlVG9rZW4=');
+final $typed_data.Uint8List listConversationsRequestDescriptor = $convert.base64Decode(
+    'ChhMaXN0Q29udmVyc2F0aW9uc1JlcXVlc3QSGwoJcGFnZV9zaXplGAEgASgDUghwYWdlU2l6ZR'
+    'ISCgRwYWdlGAIgASgDUgRwYWdlEhoKCGtleXdvcmRzGAMgASgJUghrZXl3b3JkcxIeCghpc19n'
+    'cm91cBgEIAEoCEgAUgdpc0dyb3VwiAEBQgsKCV9pc19ncm91cA==');
 
 @$core.Deprecated('Use listConversationsResponseDescriptor instead')
 const ListConversationsResponse$json = {
@@ -316,15 +331,27 @@ const ListConversationsResponse$json = {
       '6': '.chat.v1.Conversation',
       '10': 'conversations'
     },
-    {'1': 'next_page_token', '3': 2, '4': 1, '5': 9, '10': 'nextPageToken'},
+    {'1': 'total', '3': 3, '4': 1, '5': 3, '10': 'total'},
+    {
+      '1': 'has_next',
+      '3': 2,
+      '4': 1,
+      '5': 8,
+      '9': 0,
+      '10': 'hasNext',
+      '17': true
+    },
+  ],
+  '8': [
+    {'1': '_has_next'},
   ],
 };
 
 /// Descriptor for `ListConversationsResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listConversationsResponseDescriptor = $convert.base64Decode(
     'ChlMaXN0Q29udmVyc2F0aW9uc1Jlc3BvbnNlEjsKDWNvbnZlcnNhdGlvbnMYASADKAsyFS5jaG'
-    'F0LnYxLkNvbnZlcnNhdGlvblINY29udmVyc2F0aW9ucxImCg9uZXh0X3BhZ2VfdG9rZW4YAiAB'
-    'KAlSDW5leHRQYWdlVG9rZW4=');
+    'F0LnYxLkNvbnZlcnNhdGlvblINY29udmVyc2F0aW9ucxIUCgV0b3RhbBgDIAEoA1IFdG90YWwS'
+    'HgoIaGFzX25leHQYAiABKAhIAFIHaGFzTmV4dIgBAUILCglfaGFzX25leHQ=');
 
 @$core.Deprecated('Use conversationDescriptor instead')
 const Conversation$json = {
@@ -334,14 +361,7 @@ const Conversation$json = {
     {'1': 'title', '3': 2, '4': 1, '5': 9, '10': 'title'},
     {'1': 'is_group', '3': 3, '4': 1, '5': 8, '10': 'isGroup'},
     {'1': 'updated_at', '3': 4, '4': 1, '5': 3, '10': 'updatedAt'},
-    {
-      '1': 'members',
-      '3': 6,
-      '4': 3,
-      '5': 11,
-      '6': '.chat.v1.Member',
-      '10': 'members'
-    },
+    {'1': 'members', '3': 6, '4': 3, '5': 3, '10': 'members'},
   ],
 };
 
@@ -349,22 +369,7 @@ const Conversation$json = {
 final $typed_data.Uint8List conversationDescriptor = $convert.base64Decode(
     'CgxDb252ZXJzYXRpb24SDgoCaWQYASABKANSAmlkEhQKBXRpdGxlGAIgASgJUgV0aXRsZRIZCg'
     'hpc19ncm91cBgDIAEoCFIHaXNHcm91cBIdCgp1cGRhdGVkX2F0GAQgASgDUgl1cGRhdGVkQXQS'
-    'KQoHbWVtYmVycxgGIAMoCzIPLmNoYXQudjEuTWVtYmVyUgdtZW1iZXJz');
-
-@$core.Deprecated('Use memberDescriptor instead')
-const Member$json = {
-  '1': 'Member',
-  '2': [
-    {'1': 'user_id', '3': 1, '4': 1, '5': 3, '10': 'userId'},
-    {'1': 'name', '3': 2, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'avatar_url', '3': 3, '4': 1, '5': 9, '10': 'avatarUrl'},
-  ],
-};
-
-/// Descriptor for `Member`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List memberDescriptor = $convert.base64Decode(
-    'CgZNZW1iZXISFwoHdXNlcl9pZBgBIAEoA1IGdXNlcklkEhIKBG5hbWUYAiABKAlSBG5hbWUSHQ'
-    'oKYXZhdGFyX3VybBgDIAEoCVIJYXZhdGFyVXJs');
+    'GAoHbWVtYmVycxgGIAMoA1IHbWVtYmVycw==');
 
 @$core.Deprecated('Use createConversationRequestDescriptor instead')
 const CreateConversationRequest$json = {

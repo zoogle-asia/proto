@@ -285,9 +285,11 @@ class ChatServerEvent extends $pb.GeneratedMessage {
 class Auth extends $pb.GeneratedMessage {
   factory Auth({
     $core.String? token,
+    $fixnum.Int64? lastReceivedAt,
   }) {
     final result = create();
     if (token != null) result.token = token;
+    if (lastReceivedAt != null) result.lastReceivedAt = lastReceivedAt;
     return result;
   }
 
@@ -305,6 +307,7 @@ class Auth extends $pb.GeneratedMessage {
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'token')
+    ..aInt64(2, _omitFieldNames ? '' : 'lastReceivedAt')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -333,6 +336,15 @@ class Auth extends $pb.GeneratedMessage {
   $core.bool hasToken() => $_has(0);
   @$pb.TagNumber(1)
   void clearToken() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get lastReceivedAt => $_getI64(1);
+  @$pb.TagNumber(2)
+  set lastReceivedAt($fixnum.Int64 value) => $_setInt64(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasLastReceivedAt() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLastReceivedAt() => $_clearField(2);
 }
 
 class Heartbeat extends $pb.GeneratedMessage {
@@ -866,12 +878,16 @@ class SystemEvent extends $pb.GeneratedMessage {
 
 class ListConversationsRequest extends $pb.GeneratedMessage {
   factory ListConversationsRequest({
-    $core.int? pageSize,
-    $core.String? pageToken,
+    $fixnum.Int64? pageSize,
+    $fixnum.Int64? page,
+    $core.String? keywords,
+    $core.bool? isGroup,
   }) {
     final result = create();
     if (pageSize != null) result.pageSize = pageSize;
-    if (pageToken != null) result.pageToken = pageToken;
+    if (page != null) result.page = page;
+    if (keywords != null) result.keywords = keywords;
+    if (isGroup != null) result.isGroup = isGroup;
     return result;
   }
 
@@ -888,8 +904,10 @@ class ListConversationsRequest extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ListConversationsRequest',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
       createEmptyInstance: create)
-    ..aI(1, _omitFieldNames ? '' : 'pageSize')
-    ..aOS(2, _omitFieldNames ? '' : 'pageToken')
+    ..aInt64(1, _omitFieldNames ? '' : 'pageSize')
+    ..aInt64(2, _omitFieldNames ? '' : 'page')
+    ..aOS(3, _omitFieldNames ? '' : 'keywords')
+    ..aOB(4, _omitFieldNames ? '' : 'isGroup')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -913,32 +931,52 @@ class ListConversationsRequest extends $pb.GeneratedMessage {
   static ListConversationsRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.int get pageSize => $_getIZ(0);
+  $fixnum.Int64 get pageSize => $_getI64(0);
   @$pb.TagNumber(1)
-  set pageSize($core.int value) => $_setSignedInt32(0, value);
+  set pageSize($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasPageSize() => $_has(0);
   @$pb.TagNumber(1)
   void clearPageSize() => $_clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get pageToken => $_getSZ(1);
+  $fixnum.Int64 get page => $_getI64(1);
   @$pb.TagNumber(2)
-  set pageToken($core.String value) => $_setString(1, value);
+  set page($fixnum.Int64 value) => $_setInt64(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasPageToken() => $_has(1);
+  $core.bool hasPage() => $_has(1);
   @$pb.TagNumber(2)
-  void clearPageToken() => $_clearField(2);
+  void clearPage() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get keywords => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set keywords($core.String value) => $_setString(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasKeywords() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearKeywords() => $_clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get isGroup => $_getBF(3);
+  @$pb.TagNumber(4)
+  set isGroup($core.bool value) => $_setBool(3, value);
+  @$pb.TagNumber(4)
+  $core.bool hasIsGroup() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearIsGroup() => $_clearField(4);
 }
 
 class ListConversationsResponse extends $pb.GeneratedMessage {
   factory ListConversationsResponse({
     $core.Iterable<Conversation>? conversations,
-    $core.String? nextPageToken,
+    $core.bool? hasNext,
+    $fixnum.Int64? total,
   }) {
     final result = create();
     if (conversations != null) result.conversations.addAll(conversations);
-    if (nextPageToken != null) result.nextPageToken = nextPageToken;
+    if (hasNext != null) result.hasNext = hasNext;
+    if (total != null) result.total = total;
     return result;
   }
 
@@ -957,7 +995,8 @@ class ListConversationsResponse extends $pb.GeneratedMessage {
       createEmptyInstance: create)
     ..pPM<Conversation>(1, _omitFieldNames ? '' : 'conversations',
         subBuilder: Conversation.create)
-    ..aOS(2, _omitFieldNames ? '' : 'nextPageToken')
+    ..aOB(2, _omitFieldNames ? '' : 'hasNext')
+    ..aInt64(3, _omitFieldNames ? '' : 'total')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -984,13 +1023,22 @@ class ListConversationsResponse extends $pb.GeneratedMessage {
   $pb.PbList<Conversation> get conversations => $_getList(0);
 
   @$pb.TagNumber(2)
-  $core.String get nextPageToken => $_getSZ(1);
+  $core.bool get hasNext => $_getBF(1);
   @$pb.TagNumber(2)
-  set nextPageToken($core.String value) => $_setString(1, value);
+  set hasNext($core.bool value) => $_setBool(1, value);
   @$pb.TagNumber(2)
-  $core.bool hasNextPageToken() => $_has(1);
+  $core.bool hasHasNext() => $_has(1);
   @$pb.TagNumber(2)
-  void clearNextPageToken() => $_clearField(2);
+  void clearHasNext() => $_clearField(2);
+
+  @$pb.TagNumber(3)
+  $fixnum.Int64 get total => $_getI64(2);
+  @$pb.TagNumber(3)
+  set total($fixnum.Int64 value) => $_setInt64(2, value);
+  @$pb.TagNumber(3)
+  $core.bool hasTotal() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTotal() => $_clearField(3);
 }
 
 class Conversation extends $pb.GeneratedMessage {
@@ -999,7 +1047,7 @@ class Conversation extends $pb.GeneratedMessage {
     $core.String? title,
     $core.bool? isGroup,
     $fixnum.Int64? updatedAt,
-    $core.Iterable<Member>? members,
+    $core.Iterable<$fixnum.Int64>? members,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -1027,8 +1075,7 @@ class Conversation extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'title')
     ..aOB(3, _omitFieldNames ? '' : 'isGroup')
     ..aInt64(4, _omitFieldNames ? '' : 'updatedAt')
-    ..pPM<Member>(6, _omitFieldNames ? '' : 'members',
-        subBuilder: Member.create)
+    ..p<$fixnum.Int64>(6, _omitFieldNames ? '' : 'members', $pb.PbFieldType.K6)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -1087,84 +1134,7 @@ class Conversation extends $pb.GeneratedMessage {
   void clearUpdatedAt() => $_clearField(4);
 
   @$pb.TagNumber(6)
-  $pb.PbList<Member> get members => $_getList(4);
-}
-
-class Member extends $pb.GeneratedMessage {
-  factory Member({
-    $fixnum.Int64? userId,
-    $core.String? name,
-    $core.String? avatarUrl,
-  }) {
-    final result = create();
-    if (userId != null) result.userId = userId;
-    if (name != null) result.name = name;
-    if (avatarUrl != null) result.avatarUrl = avatarUrl;
-    return result;
-  }
-
-  Member._();
-
-  factory Member.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory Member.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'Member',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'chat.v1'),
-      createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'userId')
-    ..aOS(2, _omitFieldNames ? '' : 'name')
-    ..aOS(3, _omitFieldNames ? '' : 'avatarUrl')
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Member clone() => deepCopy();
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  Member copyWith(void Function(Member) updates) =>
-      super.copyWith((message) => updates(message as Member)) as Member;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static Member create() => Member._();
-  @$core.override
-  Member createEmptyInstance() => create();
-  @$core.pragma('dart2js:noInline')
-  static Member getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Member>(create);
-  static Member? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $fixnum.Int64 get userId => $_getI64(0);
-  @$pb.TagNumber(1)
-  set userId($fixnum.Int64 value) => $_setInt64(0, value);
-  @$pb.TagNumber(1)
-  $core.bool hasUserId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearUserId() => $_clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set name($core.String value) => $_setString(1, value);
-  @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearName() => $_clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get avatarUrl => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set avatarUrl($core.String value) => $_setString(2, value);
-  @$pb.TagNumber(3)
-  $core.bool hasAvatarUrl() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearAvatarUrl() => $_clearField(3);
+  $pb.PbList<$fixnum.Int64> get members => $_getList(4);
 }
 
 class CreateConversationRequest extends $pb.GeneratedMessage {

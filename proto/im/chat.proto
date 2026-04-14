@@ -30,6 +30,7 @@ message ChatServerEvent {
 
 message Auth {
   string token = 1;
+  int64 last_received_at = 2; // timestamp of the last received message, for resuming
 }
 
 message Heartbeat {}
@@ -84,13 +85,16 @@ message SystemEvent {
 }
 
 message ListConversationsRequest {
-  int32 page_size = 1;
-  string page_token = 2;
+  int64 page_size = 1;
+  int64 page = 2;
+  string  keywords = 3;
+  optional  bool is_group = 4;
 }
 
 message ListConversationsResponse {
   repeated Conversation conversations = 1;
-  string next_page_token = 2;
+  int64 total = 3;
+  optional  bool has_next = 2;
 }
 
 message Conversation {
@@ -98,13 +102,7 @@ message Conversation {
   string title = 2;
   bool   is_group = 3;
   int64  updated_at = 4;
-  repeated  Member members = 6;
-}
-
-message Member {
-  int64 user_id = 1;
-  string name = 2;
-  string avatar_url = 3;
+  repeated  int64 members = 6;
 }
 
 message  CreateConversationRequest{
